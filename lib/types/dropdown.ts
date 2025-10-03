@@ -18,4 +18,4 @@ export type DropdownTypes = {
   onClick: (val: itemTypes) => void;
   setValueLabel?: React.Dispatch<React.SetStateAction<itemTypes>>;
   valueLabel?: itemTypes;
-} & React.HTMLAttributes<HTMLDivElement>
+}

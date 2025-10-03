@@ -53,8 +53,8 @@ type InputType = typeof InputDropdown & {
   Dropdown: typeof Dropdown;
 };
 
-const Input = InputDropdown as InputType;
-Input.Dropdown = Dropdown;
+const DropdownWrapper = InputDropdown as InputType;
+DropdownWrapper.Dropdown = Dropdown;
 
-export default Input;
+export default DropdownWrapper;
 export { Dropdown };

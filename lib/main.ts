@@ -6,5 +6,7 @@ export { default as Sidebar } from "./components/Layout/Sidebar";
 export { default as Card } from "./components/Card";
 export { default as Description } from "./components/Card/Description";
 export { default as Image } from "./components/Image";
+export { default as Button } from "./components/Button";
+
 export * from "./types/main";
 export * from "./utils/main";

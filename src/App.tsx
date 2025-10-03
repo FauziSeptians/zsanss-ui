@@ -1,5 +1,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Dropdown";
+import TabWrapper from "@/components/Tab";
+import { COLOR, SIZE } from "@/constants/tab";
 import { Card, itemTypes, Typography } from "@/main";
 import { useState } from "react";
 
@@ -17,6 +19,48 @@ function App() {
           <Button radius="full">Simpan</Button>
           <Button radius="md">Simpan</Button>
         </div>
+        <div className="flex flex-col gap-4">
+          <TabWrapper
+            item={[
+              { key: "fauzi", value: "fauzi" },
+              { key: "fauzi1", value: "fauzi1" },
+              { key: "fauzi2", value: "fauzi2" },
+              { key: "fauzi3", value: "fauzi3" },
+              { key: "fauzi4", value: "fauzi4" },
+            ]}
+          />
+          <TabWrapper
+            variant="bordered"
+            item={[
+              { key: "fauzi", value: "fauzi" },
+              { key: "fauzi1", value: "fauzi1" },
+              { key: "fauzi2", value: "fauzi2" },
+              { key: "fauzi3", value: "fauzi3" },
+              { key: "fauzi4", value: "fauzi4" },
+            ]}
+          />
+          <TabWrapper
+            radius={SIZE.FULL}
+            highlightColor={COLOR.NEUTRAL}
+            item={[
+              { key: "fauzi", value: "fauzi" },
+              { key: "fauzi1", value: "fauzi1" },
+              { key: "fauzi2", value: "fauzi2" },
+              { key: "fauzi3", value: "fauzi3" },
+              { key: "fauzi4", value: "fauzi4" },
+            ]}
+          />
+          <TabWrapper
+            variant="underline"
+            item={[
+              { key: "fauzi", value: "fauzi" },
+              { key: "fauzi1", value: "fauzi1" },
+              { key: "fauzi2", value: "fauzi2" },
+              { key: "fauzi3", value: "fauzi3" },
+              { key: "fauzi4", value: "fauzi4" },
+            ]}
+          />
+        </div>
         <div>
           <Input
             item={[
@@ -33,7 +77,9 @@ function App() {
             ]}
             value={{ key: "fauzi2", value: "fauzi2" }}
           >
-            <Input.Dropdown onClick={(val : itemTypes) => setVal(val)}></Input.Dropdown>
+            <Input.Dropdown
+              onClick={(val: itemTypes) => setVal(val)}
+            ></Input.Dropdown>
           </Input>
         </div>
         <Typography.Text>{val?.key}</Typography.Text>

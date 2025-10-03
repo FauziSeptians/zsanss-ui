@@ -1,9 +1,8 @@
 import classNames from "@/utils/classNames";
 import React from "react";
 import Description from "./Description";
-import Image from "@/components/Image/index"
+import Image from "@/components/Image/index";
 import { CardTypes } from "@/types/main";
-
 
 function CardComponent({ children, className, ...props }: CardTypes) {
   let isImageExists = false;
@@ -26,7 +25,7 @@ function CardComponent({ children, className, ...props }: CardTypes) {
     <div
       className={classNames(
         isImageExists ? "p-0" : "p-4",
-        "border-[1px] border-neutral-400 rounded-md max-h-fit min-h-64 max-w-md w-full h-full",
+        "border-[1px] border-neutral rounded-md max-h-fit min-h-64 max-w-md w-full h-full",
         className
       )}
       {...props}

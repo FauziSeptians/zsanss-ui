@@ -1,10 +1,10 @@
 import Button from "@/components/Button";
 import Input from "@/components/Dropdown";
-import { Card, Typography } from "@/main";
+import { Card, itemTypes, Typography } from "@/main";
 import { useState } from "react";
 
 function App() {
-  const [val, setVal] = useState<{ key: string; value: string } | null>(null);
+  const [val, setVal] = useState<itemTypes | null>(null);
 
   return (
     <div className="flex justify-center items-center h-screen p-4">
@@ -33,7 +33,7 @@ function App() {
             ]}
             value={{ key: "fauzi2", value: "fauzi2" }}
           >
-            <Input.Dropdown onClick={(val) => setVal(val)}></Input.Dropdown>
+            <Input.Dropdown onClick={(val : itemTypes) => setVal(val)}></Input.Dropdown>
           </Input>
         </div>
         <Typography.Text>{val?.key}</Typography.Text>

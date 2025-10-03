@@ -13,11 +13,11 @@ export default function Button({
   ...props
 }: ButtonTypes) {
 
-    
+  
   const getVariant = {
-    ["primary"]: "bg-blue-600 text-white",
-    ["secondary"]: "bg-slate-400 text-black",
-    ["bordered"]: "border border-blue-600 bg-white",
+    ["primary"]: "bg-primary text-white",
+    ["secondary"]: "bg-neutral text-black",
+    ["bordered"]: "border border-primary bg-white",
   };
 
   const getTypeText = {
@@ -39,7 +39,7 @@ export default function Button({
         getVariant[variant],
         getTypeText[typeText],
         getRadius[radius],
-        isDisable ? "!bg-slate-400 !cursor-not-allowed" : "",
+        isDisable ? "!bg-neutral !cursor-not-allowed" : "",
         className
       )}
       disabled={isDisable || isProcessing}

@@ -1,6 +1,6 @@
 {
   "name": "zsanss-ui",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Reusable UI components built with React and Tailwind CSS",
   "author": "fauziseptians",
   "license": "MIT",
@@ -49,5 +49,25 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FauziSeptians/zsanss-ui.git"
+  },
+  "homepage": "https://github.com/FauziSeptians/zsanss-ui",
+  "bugs": {
+    "url": "https://github.com/FauziSeptians/zsanss-ui/issues"
+  },
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "ui",
+    "components",
+    "design-system",
+    "typescript",
+    "vite",
+    "react-ui",
+    "tailwind-ui",
+    "zsanss-ui"
+  ]
 }

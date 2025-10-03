@@ -1,6 +1,4 @@
-Bagus banget, bikin dokumentasi README yang rapi dan menarik akan bikin library kamu lebih profesional dan gampang dipakai orang lain. Aku bikinkan draft README untuk zsanss-ui dengan struktur yang umum dipakai di open-source UI library, lengkap dengan badge, contoh penggunaan, dan kontribusi.
-
-📦 ZSANSS-UI
+**📦 ZSANSS-UI**
 
 Reusable UI components built with React + Tailwind CSS
 

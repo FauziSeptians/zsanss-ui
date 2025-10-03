@@ -82,7 +82,19 @@ function App() {
             ></Input.Dropdown>
           </Input>
         </div>
-        <Typography.Text>{val?.key}</Typography.Text>
+        <div>
+          <Typography.Title>Hallo hallo bandung</Typography.Title>
+          <Typography.Text>{val?.key}</Typography.Text>
+          <Typography.Text>
+            Lorem Ipsum is a dummy text commonly used in graphic design,
+            publishing, and web development. It originates from sections 1.10.32
+            and 1.10.33 of Cicero's "de Finibus Bonorum et Malorum", written in
+            45 BC, which discusses ethics. The phrase "Lorem ipsum dolor sit
+            amet" is derived from this text and has been used as placeholder
+            text since the Renaissance. It allows designers to focus on layout
+            and visual elements without being distracted by meaningful content.
+          </Typography.Text>
+        </div>
         <div className="flex justify-center">
           <Card>
             <Card.Description

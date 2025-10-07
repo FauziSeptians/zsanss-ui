@@ -1,12 +1,17 @@
 {
   "name": "zsanss-ui",
-  "version": "1.0.10",
-  "description": "Reusable UI components built with React and Tailwind CSS",
-  "author": "fauziseptians",
+  "version": "1.0.11",
+  "description": "Modern, accessible, and fully customizable React UI component library built with Tailwind CSS. Production-ready components with TypeScript support.",
+  "author": {
+    "name": "Fauzi Septians",
+    "url": "https://github.com/FauziSeptians"
+  },
   "license": "MIT",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "main": "./dist/zsanss-ui.umd.cjs",
   "module": "./dist/zsanss-ui.js",
@@ -60,27 +65,50 @@
     "playwright": "^1.56.0",
     "@vitest/coverage-v8": "^3.2.4"
   },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "tailwindcss": ">=4.0.0"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FauziSeptians/zsanss-ui.git"
+    "url": "git+https://github.com/FauziSeptians/zsanss-ui.git"
   },
-  "homepage": "https://github.com/FauziSeptians/zsanss-ui",
+  "homepage": "https://zsanss-ui.vercel.app/",
   "bugs": {
     "url": "https://github.com/FauziSeptians/zsanss-ui/issues"
   },
   "keywords": [
     "react",
+    "react-components",
+    "react-ui",
     "tailwindcss",
-    "ui",
-    "components",
+    "tailwind-components",
+    "tailwind-ui",
+    "ui-library",
+    "ui-components",
+    "component-library",
     "design-system",
     "typescript",
     "vite",
-    "react-ui",
-    "tailwind-ui",
-    "zsanss-ui"
-  ]
+    "button",
+    "form",
+    "input",
+    "modal",
+    "accessible",
+    "a11y",
+    "customizable",
+    "modern-ui",
+    "frontend",
+    "web-components",
+    "zsanss-ui",
+    "zsanss"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
 }

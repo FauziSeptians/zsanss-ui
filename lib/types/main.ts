@@ -3,4 +3,5 @@ export type { LayoutTypes, ObjectSidebar } from "./layout";
 export type { CardTypes } from "./card";
 export type { ButtonTypes } from "./button";
 export type { DropdownTypes, InputDropdownTypes, itemTypes } from "./dropdown";
-export type {TabTypes,itemTabType  } from "./tab"
+export type { TabTypes, itemTabType } from "./tab";
+export type { InputTypes } from "./input";

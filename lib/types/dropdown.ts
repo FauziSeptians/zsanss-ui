@@ -5,8 +5,20 @@ export type itemTypes = {
   value: string;
 };
 
+export type SharedDropdownProps = {
+  item: itemTypes[];
+  valueLabel: itemTypes | null;
+  setValueLabel: React.Dispatch<React.SetStateAction<itemTypes | null>>;
+  setIsOpenDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  className: string;
+  searchValue: string;
+  setSearch: (e: string) => void;
+};
+
 export type InputDropdownTypes = {
-  children?: ReactElement<itemTypes[]>;
+  children?:
+    | ReactElement<SharedDropdownProps>
+    | ReactElement<SharedDropdownProps>[];
   label?: string;
   item: itemTypes[];
   value?: itemTypes;
@@ -18,4 +30,6 @@ export type DropdownTypes = {
   onClick: (val: itemTypes) => void;
   setValueLabel?: React.Dispatch<React.SetStateAction<itemTypes>>;
   valueLabel?: itemTypes;
-}
+  className?: string;
+  searchValue?: string;
+};

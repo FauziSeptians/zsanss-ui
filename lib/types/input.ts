@@ -1,9 +1,9 @@
 import { VARIANT } from "@/constants/input";
-import {  InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
 export type InputTypes = {
   type: "text" | "email" | "number";
-  classNames?: string;
+  className?: string;
   inputVariant?: VARIANT;
   inputRadius?: "md" | "xl" | "full";
   placeHolder: string;
@@ -17,3 +17,10 @@ export type InputState = {
 };
 
 export type InputAction = { type: "ADD"; payload: string } | { type: "REMOVE" };
+
+export type InputSearchTypes = {
+  className?: string;
+  placeHolder?: string;
+  searchValue: string;
+  setSearch : (val : string) => void
+} & InputHTMLAttributes<HTMLInputElement>;

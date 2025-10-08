@@ -1,6 +1,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Dropdown";
+import InputWrapper from "@/components/Input";
 import TabWrapper from "@/components/Tab";
+import { VARIANT } from "@/constants/input";
 import { COLOR, SIZE } from "@/constants/tab";
 import { Card, itemTypes, Typography } from "@/main";
 import { useState } from "react";
@@ -81,7 +83,22 @@ function App() {
               onClick={(val: itemTypes) => setVal(val)}
             ></Input.Dropdown>
           </Input>
-        </div>
+        </div>{" "}
+        <InputWrapper type="text" placeHolder="hallo" label="test ini label" />
+        <InputWrapper
+          type="text"
+          inputVariant={VARIANT.UNDERLINED}
+          placeHolder="hallo"
+          label="test ini label"
+          value="hallosemuanya ini test errror"
+          error="ada kesalahan pada format penulisan"
+          readOnly={true}
+        />
+        <InputWrapper
+          type="text"
+          inputVariant={VARIANT.BORDERED}
+          placeHolder="hallo"
+        />
         <div>
           <Typography.Title>Hallo hallo bandung</Typography.Title>
           <Typography.Text>{val?.key}</Typography.Text>

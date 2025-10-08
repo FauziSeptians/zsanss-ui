@@ -1,8 +1,10 @@
-import { InputDropdownTypes } from "@/types/dropdown";
+import { InputDropdownTypes, SharedDropdownProps } from "@/types/dropdown";
 import Dropdown from "./Dropdown";
-import { cloneElement, isValidElement, ReactElement, useState } from "react";
+import { cloneElement, isValidElement, useMemo, useState } from "react";
 import classNames from "@/utils/classNames";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Search from "../Input/Search";
+import React from "react";
 
 function InputDropdown({
   children,
@@ -16,13 +18,27 @@ function InputDropdown({
     key: string;
     value: string;
   } | null>(value || null);
+  const [searchValue, setSearchValue] = useState("");
 
-  const sharedProps = {
-    item,
+  const hasSearchChild = React.Children.toArray(children).some(
+    (child) => isValidElement(child) && child.type === DropdownWrapper.Search
+  );
+
+  const itemVal = useMemo(() => {
+    return item?.filter((item) => item?.key?.includes(searchValue));
+  }, [searchValue, item]);
+
+  const sharedProps: SharedDropdownProps = {
+    item: itemVal,
     setIsOpenDropdown,
     setValueLabel,
     valueLabel,
+    className: hasSearchChild ? "!border-none !shadow-none" : "",
+    searchValue: searchValue,
+    setSearch: setSearchValue,
   };
+
+  console.log("search", searchValue);
 
   return (
     <>
@@ -38,23 +54,34 @@ function InputDropdown({
         {valueLabel?.value || label}
         {!isDropdownOpen ? <ChevronDown /> : <ChevronUp />}
       </button>
-
-      {isDropdownOpen && isValidElement(children)
-        ? cloneElement(
-            children as ReactElement<typeof sharedProps>,
-            sharedProps
-          )
-        : null}
+      {isDropdownOpen && (
+        <div
+          className={classNames(
+            hasSearchChild
+              ? "py-3 px-2 bg-white border border-neutral-200 rounded-b-md"
+              : ""
+          )}
+        >
+          {isDropdownOpen &&
+            React.Children.map(children, (child) => {
+              return isValidElement(child)
+                ? cloneElement(child, sharedProps)
+                : child;
+            })}
+        </div>
+      )}
     </>
   );
 }
 
 type InputType = typeof InputDropdown & {
   Dropdown: typeof Dropdown;
+  Search: typeof Search;
 };
 
 const DropdownWrapper = InputDropdown as InputType;
 DropdownWrapper.Dropdown = Dropdown;
+DropdownWrapper.Search = Search;
 
 export default DropdownWrapper;
 export { Dropdown };

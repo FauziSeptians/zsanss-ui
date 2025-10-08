@@ -6,45 +6,61 @@ function Dropdown({
   item,
   setIsOpenDropdown,
   onClick,
+  className,
   setValueLabel,
   valueLabel,
+  searchValue,
   ...props
 }: DropdownTypes) {
+  console.log(item);
+
+  console.log(valueLabel);
+  console.log(setValueLabel);
+
   return (
     <div
       className={classNames(
         item && item?.length > 2 ? "max-h-36 overflow-y-auto" : "h-fit",
-        "mt-2 border border-primary shadow-sm bg-white flex flex-col"
+        "mt-2 border border-primary shadow-sm bg-white flex flex-col",
+        className
       )}
       {...props}
     >
-      {item?.map((i) => {
-        const isHighlight = i?.key === valueLabel?.key;
+      {item &&
+        item?.map((i) => {
+          const isHighlight = i?.key === valueLabel?.key;
 
-        return (
-          <button
-            key={i.key}
-            className={classNames(
-              "cursor-pointer hover:bg-neutral-100 flex justify-start",
-              isHighlight ? "!bg-primary !text-white" : ""
-            )}
-            onClick={() => {
-              if (onClick) onClick(i);
-              if (setValueLabel) setValueLabel(i);
-              if (setIsOpenDropdown) setIsOpenDropdown(false);
-            }}
-          >
-            <div
+          return (
+            <button
+              key={i.key}
               className={classNames(
-                isHighlight ? "border-none" : "border-b-[1px]",
-                "border-slate-300 w-full h-full mx-2 py-3 flex justify-start"
+                "cursor-pointer hover:bg-neutral-100 flex justify-start",
+                isHighlight ? "!bg-primary !text-white" : ""
               )}
+              onClick={() => {
+                if (onClick) onClick(i);
+                if (setValueLabel) setValueLabel(i);
+                if (setIsOpenDropdown) setIsOpenDropdown(false);
+              }}
             >
-              <Typography.Text>{i.value}</Typography.Text>
-            </div>
-          </button>
-        );
-      })}
+              <div
+                className={classNames(
+                  isHighlight ? "border-none" : "border-b-[1px]",
+                  "border-slate-300 w-full h-full mx-2 py-3 flex justify-start"
+                )}
+              >
+                <Typography.Text highlightText={searchValue}>
+                  {i.value}
+                </Typography.Text>
+              </div>
+            </button>
+          );
+        })}
+      {!item?.length ? (
+        <div className="min-h-36 flex justify-center items-center">
+          <Typography.Text>No data</Typography.Text>
+        </div>
+      ) : null}
     </div>
   );
 }

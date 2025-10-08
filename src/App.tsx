@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Dropdown";
 import InputWrapper from "@/components/Input";
+import Search from "@/components/Input/Search";
 import TabWrapper from "@/components/Tab";
 import { VARIANT } from "@/constants/input";
 import { COLOR, SIZE } from "@/constants/tab";
@@ -79,9 +80,8 @@ function App() {
             ]}
             value={{ key: "fauzi2", value: "fauzi2" }}
           >
-            <Input.Dropdown
-              onClick={(val: itemTypes) => setVal(val)}
-            ></Input.Dropdown>
+            <Input.Search setSearch={(val) => console.log(val)} searchValue={""} />
+            <Input.Dropdown onClick={(val: itemTypes) => setVal(val)} />
           </Input>
         </div>{" "}
         <InputWrapper type="text" placeHolder="hallo" label="test ini label" />
@@ -99,6 +99,7 @@ function App() {
           inputVariant={VARIANT.BORDERED}
           placeHolder="hallo"
         />
+        <Search setSearch={(val) => console.log(val)} searchValue={""} />
         <div>
           <Typography.Title>Hallo hallo bandung</Typography.Title>
           <Typography.Text>{val?.key}</Typography.Text>

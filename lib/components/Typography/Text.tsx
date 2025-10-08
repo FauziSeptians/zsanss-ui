@@ -9,7 +9,7 @@ interface ExtendedTextTypes extends TextTypes {
 
 const highlightContent = (
   text: React.ReactNode,
-  highlight: string
+  highlight: string,
 ): React.ReactNode => {
   if (!highlight || typeof text !== "string") {
     return text;

@@ -80,7 +80,6 @@ function App() {
             ]}
             value={{ key: "fauzi2", value: "fauzi2" }}
           >
-            <Input.Search setSearch={(val) => console.log(val)} searchValue={""} />
             <Input.Dropdown onClick={(val: itemTypes) => setVal(val)} />
           </Input>
         </div>{" "}
@@ -99,7 +98,6 @@ function App() {
           inputVariant={VARIANT.BORDERED}
           placeHolder="hallo"
         />
-        <Search setSearch={(val) => console.log(val)} searchValue={""} />
         <div>
           <Typography.Title>Hallo hallo bandung</Typography.Title>
           <Typography.Text>{val?.key}</Typography.Text>

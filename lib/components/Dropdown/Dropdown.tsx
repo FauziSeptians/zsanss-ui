@@ -12,11 +12,6 @@ function Dropdown({
   searchValue,
   ...props
 }: DropdownTypes) {
-  console.log(item);
-
-  console.log(valueLabel);
-  console.log(setValueLabel);
-
   return (
     <div
       className={classNames(

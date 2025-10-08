@@ -162,15 +162,11 @@ export default function Sidebar(props: LayoutTypes) {
 
       if (!isSidebarOpen) setIsSidebarOpen(true);
 
-      console.log(clickableMenu);
-
       setClickableMenu((prev) => ({
          isOpen: prev?.url === menuURL && prev.isOpen ? false : true,
          url: menuURL,
       }));
    }
-
-   console.log(clickableMenu);
 
    return (
       <div className="flex w-full">

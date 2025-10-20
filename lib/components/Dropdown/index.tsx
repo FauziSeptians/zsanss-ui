@@ -38,8 +38,6 @@ function InputDropdown({
     setSearch: setSearchValue,
   };
 
-  console.log("search", searchValue);
-
   return (
     <>
       <button

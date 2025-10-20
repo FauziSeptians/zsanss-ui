@@ -52,10 +52,10 @@ export default function TabWrapper({
       <div
         {...props}
         className={classNames(
+          "flex",
           variant !== VARIANT_TAB.UNDERLINE && getRadius[radius as SIZE],
           getVariant[variant as VARIANT_TAB],
-          variant !== VARIANT_TAB.UNDERLINE ? "p-1" : "",
-          "flex"
+          variant !== VARIANT_TAB.UNDERLINE ? "p-1" : ""
         )}
       >
         {item?.map((tab) => {

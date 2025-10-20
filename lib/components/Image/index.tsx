@@ -36,7 +36,7 @@ export default function Image({
       }}
     >
       {!loaded && !error && (
-        <Spinner className="bg-red-200 w-full h-full flex justify-center items-center" />
+        <Spinner className="w-full h-full flex justify-center items-center" />
       )}
       {!loaded && error && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">

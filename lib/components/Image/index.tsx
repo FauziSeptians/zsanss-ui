@@ -9,6 +9,8 @@ export type ImageProps = {
   caption?: string;
   fallbackSrc?: string;
   className?: string;
+  width?: number;
+  height?: number;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Image({
@@ -16,6 +18,8 @@ export default function Image({
   alt = "Image",
   caption,
   className = "",
+  width,
+  height,
 }: ImageProps) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -23,11 +27,17 @@ export default function Image({
   return (
     <div
       className={classNames(
-        "relative w-full max-h-60 overflow-hidden shadow-md bg-gray-100",
+        "relative w-full max-h-60 overflow-hidden shadow-md bg-gray-100 h-full",
         className
       )}
+      style={{
+        width,
+        height,
+      }}
     >
-      {!loaded && !error && <Spinner />}
+      {!loaded && !error && (
+        <Spinner className="bg-red-200 w-full h-full flex justify-center items-center" />
+      )}
       {!loaded && error && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">
           <ImageOff size={40} />
@@ -38,6 +48,8 @@ export default function Image({
         <img
           src={src}
           alt={alt}
+          height={height}
+          width={width}
           loading="lazy"
           onLoad={() => setLoaded(true)}
           onError={() => setError(true)}

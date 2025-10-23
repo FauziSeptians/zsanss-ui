@@ -4,6 +4,41 @@ import classNames from "@/utils/classNames";
 import { useState } from "react";
 import Typography from "../Typography";
 
+
+
+/**
+ * `TabWrapper` is a customizable tab navigation component that renders a horizontal list of tabs
+ * with support for multiple visual variants, highlight colors, and border radius styles.
+ * It manages internal state for the selected tab and applies dynamic styling based on the active tab.
+ *
+ * This component is commonly used to switch between views or filter content sections.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <TabWrapper
+ *   item={[
+ *     { key: 'overview', value: 'Overview' },
+ *     { key: 'details', value: 'Details' },
+ *   ]}
+ *   variant="underline"
+ *   radius="md"
+ *   highlightColor="primary"
+ * >
+ *   <div>Tab content goes here</div>
+ * </TabWrapper>
+ * ```
+ *
+ * @param props - Props extending `TabTypes`.
+ * @param props.item - Array of tab objects with `key` and `value` used to render each tab.
+ * @param props.variant - Visual style of the tab container. Options: `"default"`, `"underline"`, `"bordered"`. Default is `"default"`.
+ * @param props.radius - Border radius of each tab. Options: `"full"`, `"lg"`, `"md"`, `"sm"`. Default is `"lg"`.
+ * @param props.highlightColor - Color used to highlight the selected tab. Options: `"primary"`, `"secondary"`, `"neutral"`. Default is `"primary"`.
+ * @param props.children - Optional content rendered below the tab list.
+ * @param props.className - Additional Tailwind CSS classes for the tab container.
+ *
+ * @returns A styled tab navigation bar with internal selection state and optional content area.
+ */
 export default function TabWrapper({
   item,
   variant = VARIANT_TAB.DEFAULT,

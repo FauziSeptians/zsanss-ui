@@ -6,6 +6,37 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import Search from "../Input/Search";
 import React from "react";
 
+
+/**
+ * `DropdownWrapper` is a compound dropdown component that supports dynamic item selection,
+ * optional search filtering, and custom rendering via child components.
+ * It manages internal state for dropdown visibility, selected value, and search input.
+ *
+ * This component exposes two subcomponents:
+ * - `DropdownWrapper.Dropdown`: used to render selectable items.
+ * - `DropdownWrapper.Search`: used to render a search input field inside the dropdown.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <DropdownWrapper
+ *   label="Select Category"
+ *   item={[{ key: 'tech', value: 'Technology' }, { key: 'design', value: 'Design' }]}
+ * >
+ *   <DropdownWrapper.Search />
+ *   <DropdownWrapper.Dropdown />
+ * </DropdownWrapper>
+ * ```
+ *
+ * @param props - Props extending `InputDropdownTypes`.
+ * @param props.label - Accessible label and default display text. Default is `"input-dropdown"`.
+ * @param props.value - Initial selected value object `{ key: string; value: string }`.
+ * @param props.item - Array of selectable items with `key` and `value`.
+ * @param props.children - Child components to be rendered inside the dropdown (e.g., `Search`, `Dropdown`).
+ * @param props.className - Additional Tailwind CSS classes for the trigger button.
+ *
+ * @returns A styled dropdown button with optional search and item list.
+ */
 function InputDropdown({
   children,
   label = "input-dropdown",

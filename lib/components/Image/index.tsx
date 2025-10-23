@@ -13,6 +13,37 @@ export type ImageProps = {
   height?: number;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+
+/**
+ * `Image` is a responsive image component with built-in loading and error states.
+ * It displays a spinner while loading, a fallback icon if the image fails to load,
+ * and an optional caption overlay. Supports custom dimensions and styling.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Image
+ *   src="/images/sample.jpg"
+ *   alt="Sample Image"
+ *   caption="This is a caption"
+ *   width={300}
+ *   height={200}
+ *   className="rounded-lg"
+ * />
+ * ```
+ *
+ * @param props - Props for configuring the image display.
+ * @param props.src - The source URL of the image.
+ * @param props.alt - Alternative text for accessibility. Default is `"Image"`.
+ * @param props.caption - Optional caption text displayed at the bottom of the image.
+ * @param props.fallbackSrc - (Reserved) Optional fallback image source if the main image fails.
+ * @param props.className - Additional Tailwind CSS classes for styling the container.
+ * @param props.width - Optional width of the image container in pixels.
+ * @param props.height - Optional height of the image container in pixels.
+ * @param props.children - (Inherited from `HTMLDivElement`) Any nested content.
+ *
+ * @returns A styled image container with loading, error, and caption support.
+ */
 export default function Image({
   src,
   alt = "Image",

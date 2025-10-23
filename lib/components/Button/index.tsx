@@ -2,6 +2,36 @@ import { ButtonTypes } from "@/types/button";
 import classNames from "@/utils/classNames";
 import Spinner from "../Spinner";
 
+/**
+ * `Button` is a customizable and responsive button component that supports multiple visual variants,
+ * text sizes, border radius options, and loading/disabled states. It also integrates a spinner
+ * when `isProcessing` is active.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Button
+ *   variant="primary"
+ *   radius="full"
+ *   isProcessing={loading}
+ *   onClick={() => handleSubmit()}
+ * >
+ *   Submit
+ * </Button>
+ * ```
+ *
+ * @param props - Props extending `ButtonTypes`.
+ * @param props.children - Content to be rendered inside the button.
+ * @param props.className - Additional Tailwind CSS classes for styling.
+ * @param props.isDisable - If true, disables the button and prevents interaction.
+ * @param props.isProcessing - If true, shows a loading spinner and disables the button.
+ * @param props.typeText - Controls the font size. Options: `"small"` (default), `"medium"`.
+ * @param props.variant - Visual style of the button. Options: `"primary"` (default), `"secondary"`, `"bordered"`.
+ * @param props.radius - Border radius style. Options: `"md"` (default), `"full"`, `"2xl"`.
+ * @param props.onClick - Callback triggered when the button is clicked.
+ *
+ * @returns A styled `<button>` element with optional loading and disabled states.
+ */
 export default function Button({
   children,
   className,

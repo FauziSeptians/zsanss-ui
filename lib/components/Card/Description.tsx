@@ -10,6 +10,37 @@ export type DescriptionProps = {
   underline?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+
+/**
+ * `Description` is a flexible content block component used to display a title and description
+ * with optional typography styling. It also supports rendering custom children, which will override
+ * the default title/description layout if provided.
+ *
+ * Commonly used inside components like `Card` to display structured content.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Description
+ *   title="Project Title"
+ *   description="This is a short description of the project."
+ *   bold
+ *   titleSize="large"
+ * />
+ * ```
+ *
+ * @param props - Props for configuring the description block.
+ * @param props.title - Optional title text to display.
+ * @param props.description - Optional description text to display below the title.
+ * @param props.children - Optional custom content. If provided, it overrides the default title/description layout.
+ * @param props.titleSize - Size of the title text. Options: `"small"`, `"medium"`, `"large"`.
+ * @param props.bold - Applies bold styling to the title if true.
+ * @param props.italic - Applies italic styling to the title if true.
+ * @param props.underline - Applies underline styling to the title if true.
+ * @param props.className - Additional Tailwind CSS classes for the container.
+ *
+ * @returns A styled content block with optional title, description, or custom children.
+ */
 export default function Description({
   title,
   description,

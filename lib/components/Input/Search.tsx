@@ -3,6 +3,31 @@ import classNames from "@/utils/classNames";
 import { SearchIcon } from "lucide-react";
 import { useReducer } from "react";
 
+
+/**
+ * `Search` is a controlled search input component with built-in reducer logic
+ * for managing input state and triggering search updates.
+ * It supports read-only mode, custom placeholder, and external state handling via `setSearch`.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Search
+ *   placeHolder="Search projects..."
+ *   searchValue={search}
+ *   setSearch={(val) => setSearch(val)}
+ * />
+ * ```
+ *
+ * @param props - Props extending `InputSearchTypes`.
+ * @param props.className - Additional Tailwind CSS classes for the container.
+ * @param props.placeHolder - Placeholder text for the input field.
+ * @param props.searchValue - Initial value of the search input.
+ * @param props.setSearch - Callback to update the search value externally.
+ * @param props.readOnly - If true, disables input interaction.
+ *
+ * @returns A styled search input field with icon and reducer-based state management.
+ */
 export default function Search({
   className,
   placeHolder,

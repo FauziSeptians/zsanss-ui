@@ -4,6 +4,40 @@ import classNames from "@/utils/classNames";
 import { useId, useReducer, useState } from "react";
 import Typography from "../Typography";
 
+/**
+ * `InputWrapper` is a flexible and styled input component that supports multiple visual variants,
+ * error messaging, and internal state management via reducer. It can be used for various input types
+ * and integrates with custom typography components for labels and error text.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <InputWrapper
+ *   type="text"
+ *   label="Username"
+ *   placeHolder="Enter your username"
+ *   value={username}
+ *   error={formError}
+ *   inputVariant="bordered"
+ *   inputRadius="lg"
+ *   onChange={(e) => setUsername(e.target.value)}
+ * />
+ * ```
+ *
+ * @param props - Props extending `InputTypes`.
+ * @param props.type - HTML input type (e.g. `"text"`, `"email"`, `"password"`).
+ * @param props.className - Additional Tailwind CSS classes for the input element.
+ * @param props.inputVariant - Visual style of the input. Options: `"flat"`, `"bordered"`, `"underlined"`. Default is `"flat"`.
+ * @param props.inputRadius - Border radius size. Accepts Tailwind values like `"md"`, `"lg"`, etc.
+ * @param props.placeHolder - Placeholder text for the input field.
+ * @param props.label - Optional label displayed above the input.
+ * @param props.value - Initial value of the input field.
+ * @param props.error - Error message to display below the input.
+ * @param props.readOnly - If true, disables input interaction.
+ * @param props.onChange - Callback triggered when input value changes.
+ *
+ * @returns A styled input field with optional label and error message.
+ */
 export default function InputWrapper({
   type,
   className,
@@ -153,7 +187,7 @@ export default function InputWrapper({
     }
   }
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 w-full">
       {render(inputVariant)}
       {errorWording?.isError ? (
         <Typography.Text className="text-red-400">

@@ -120,6 +120,56 @@ function SubMenuComponent(
    );
 }
 
+
+/**
+ * `Sidebar` is a responsive and interactive sidebar navigation component
+ * that supports nested menus, submenu expansion, and dynamic highlighting based on the current URL.
+ * It also includes toggle functionality to collapse or expand the sidebar.
+ *
+ * This component is commonly used as part of a layout system to provide structured navigation.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Sidebar
+ *   urlPath="/dashboard"
+ *   menuHiglightColor="#f5f5f5"
+ *   menuSelectedColor="#ffffff"
+ *   headerComponent={<Logo />}
+ *   bottomComponent={<UserProfile />}
+ *   menus={[
+ *     {
+ *       key: 'dashboard',
+ *       menu: 'Dashboard',
+ *       url: '/dashboard',
+ *       icon: DashboardIcon,
+ *       subMenu: [
+ *         {
+ *           key: 'analytics',
+ *           menu: 'Analytics',
+ *           url: '/dashboard/analytics',
+ *           icon: ChartIcon,
+ *         },
+ *       ],
+ *     },
+ *   ]}
+ * >
+ *   <MainContent />
+ * </Sidebar>
+ * ```
+ *
+ * @param props - Props extending `LayoutTypes`.
+ * @param props.menus - Array of menu objects with optional nested `subMenu`. Each item must have `key`, `menu`, `url`, and optional `icon`.
+ * @param props.urlPath - Current active URL used to determine selected menu and submenu.
+ * @param props.menuHiglightColor - Background color of the sidebar when open. Default is `#f5f5f5`.
+ * @param props.menuSelectedColor - Background color of selected menu item. Default is `#ffffff`.
+ * @param props.headerComponent - Optional React node rendered at the top of the sidebar.
+ * @param props.bottomComponent - Optional React node rendered at the bottom of the sidebar.
+ * @param props.className - Additional Tailwind CSS classes for styling the sidebar container.
+ * @param props.children - Main content rendered beside the sidebar.
+ *
+ * @returns A sidebar layout with collapsible navigation, submenu support, and dynamic selection.
+ */
 export default function Sidebar(props: LayoutTypes) {
    const {
       menus,

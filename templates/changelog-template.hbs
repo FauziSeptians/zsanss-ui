@@ -1,0 +1,47 @@
+# 📋 Changelog
+
+All notable changes to this project will be documented in this file.
+
+{{#each releases}}
+{{#unless @first}}
+{{#if href}}
+## [{{title}}]({{href}}) - {{niceDate}}
+{{else}}
+## {{title}} - {{niceDate}}
+{{/if}}
+
+{{#if summary}}
+**{{summary}}**
+
+{{/if}}
+{{#if merges}}
+### 🔀 Pull Requests
+
+{{#each merges}}
+- {{message}} ([#{{id}}]({{href}}))
+{{/each}}
+
+{{/if}}
+{{#if fixes}}
+### 🐛 Bug Fixes
+
+{{#each fixes}}
+- {{commit.subject}} - fixes [#{{id}}]({{href}}){{#if commit.author.name}} • 👤 by **@{{commit.author.name}}**{{/if}}
+{{/each}}
+
+{{/if}}
+{{#if commits}}
+### 📝 Commits
+
+{{#each commits}}
+{{#if breaking}}
+- 🚨 **BREAKING CHANGE:** {{subject}} <sub>[`{{shorthash}}`]({{href}}){{#if author.name}} by @{{author.name}}{{/if}}</sub>
+{{else}}
+- {{subject}} <sub>[`{{shorthash}}`]({{href}}){{#if author.name}} by @{{author.name}}{{/if}}</sub>
+{{/if}}
+{{/each}}
+
+{{/if}}
+{{/unless}}
+{{/each}}
+

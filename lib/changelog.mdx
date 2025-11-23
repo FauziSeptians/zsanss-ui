@@ -1,0 +1,12 @@
+import { Meta } from '@storybook/blocks';
+import Changelog from '../CHANGELOG.md?raw';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+<Meta title="Introduction/Changelog" />
+
+<div className="prose prose-slate max-w-none">
+  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+    {Changelog}
+  </ReactMarkdown>
+</div>

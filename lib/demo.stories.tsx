@@ -7,7 +7,7 @@ import { VARIANT } from "./constants/input";
 import Search from "./components/Input/Search";
 
 export default {
-  title: "🧩 Demo Showcase",
+  title: "Introduction/Demo Showcase",
 } as Meta;
 
 export const Showcase = () => {

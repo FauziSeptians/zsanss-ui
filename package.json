@@ -32,12 +32,13 @@
     "build-storybook": "storybook build",
     "auto-changelog": "npx auto-changelog --template templates/changelog-template.hbs"
   },
-   "auto-changelog": {
-      "template": "changelog-template.hbs",
-      "unreleased": true,
-      "commitLimit": false
-    },
+  "auto-changelog": {
+    "template": "changelog-template.hbs",
+    "unreleased": true,
+    "commitLimit": false
+  },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@tailwindcss/vite": "^4.1.14",
     "lucide-react": "^0.544.0",
     "marked": "^5.1.2",

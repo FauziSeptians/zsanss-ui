@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+App.tsx
+
 *storybook.log
 storybook-static

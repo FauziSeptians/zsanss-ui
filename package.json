@@ -32,13 +32,14 @@
     "build-storybook": "storybook build",
     "auto-changelog": "npx auto-changelog --template templates/changelog-template.hbs"
   },
-   "auto-changelog": {
-      "template": "changelog-template.hbs",
-      "unreleased": true,
-      "commitLimit": false
-    },
+  "auto-changelog": {
+    "template": "changelog-template.hbs",
+    "unreleased": true,
+    "commitLimit": false
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
+    "framer-motion": "^12.36.0",
     "lucide-react": "^0.544.0",
     "marked": "^5.1.2",
     "react": ">=18.0.0",

@@ -11,6 +11,7 @@ export { default as DropdownWrapper } from "./components/Dropdown/index";
 export { default as Dropdown } from "./components/Dropdown/Dropdown";
 export { default as TabWrapper } from "./components/Tab/index";
 export { default as Input } from "./components/Input/index";
+export { default as Form } from "./components/Form/index";
 
 export * from "./types/main";
 export * from "./utils/main";

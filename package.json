@@ -32,22 +32,25 @@
     "build-storybook": "storybook build",
     "auto-changelog": "npx auto-changelog --template templates/changelog-template.hbs"
   },
-   "auto-changelog": {
-      "template": "changelog-template.hbs",
-      "unreleased": true,
-      "commitLimit": false
-    },
+  "auto-changelog": {
+    "template": "changelog-template.hbs",
+    "unreleased": true,
+    "commitLimit": false
+  },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.14",
     "lucide-react": "^0.544.0",
     "marked": "^5.1.2",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
+    "react-hook-form": "^7.71.2",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "tailwindcss": ">=4.0.0",
     "vite-plugin-dts": "^4.5.4",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",

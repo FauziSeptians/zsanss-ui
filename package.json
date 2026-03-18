@@ -30,7 +30,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "auto-changelog": "npx auto-changelog --template templates/changelog-template.hbs"
+    "auto-changelog": "git fetch --prune && npx auto-changelog --template templates/changelog-template.hbs"
   },
   "auto-changelog": {
     "template": "changelog-template.hbs",

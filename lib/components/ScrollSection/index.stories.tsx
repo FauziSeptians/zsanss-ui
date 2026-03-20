@@ -5,6 +5,7 @@ import ScrollStepContent from ".";
 const meta: Meta<typeof ScrollStepContent> = {
   title: "Components/ScrollStepContent",
   component: ScrollStepContent,
+   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   },

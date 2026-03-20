@@ -4,6 +4,7 @@ import  SectionWrapper  from ".";
 const meta: Meta<typeof SectionWrapper> = {
   title: "Components/SectionWrapper",
   component: SectionWrapper,
+   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   },

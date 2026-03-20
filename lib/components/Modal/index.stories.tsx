@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
+   tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",

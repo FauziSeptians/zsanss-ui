@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",
+   tags: ["autodocs"],
   component: Stepper,
 };
 

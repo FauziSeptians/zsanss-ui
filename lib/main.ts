@@ -17,6 +17,7 @@ export { default as Modal } from "./components/Modal/index";
 export {default as SectionWrapper} from "./components/SectionWrapper/index"
 export {default as Select} from "./components/Select/index"
 export {default as Pagination} from "./components/Pagination/index"
+export {default as Table} from "./components/Table/index"
 
 export * from "./types/main";
 export * from "./utils/main";

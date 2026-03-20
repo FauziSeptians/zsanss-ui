@@ -38,9 +38,10 @@
     "commitLimit": false
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
     "@headlessui/react": "^2.2.9",
+    "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-table": "^8.21.3",
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.544.0",
     "marked": "^5.1.2",

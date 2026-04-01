@@ -14,6 +14,8 @@ export { default as Input } from "./components/Input/index";
 export { default as ScrollSection } from "./components/ScrollSection/index";
 export { default as Form } from "./components/Form/index";
 export { default as Modal } from "./components/Modal/index";
+export { default as Drawer } from "./components/Drawer/index";
+export * from "./components/Drawer/Drawer";
 export {default as SectionWrapper} from "./components/SectionWrapper/index"
 export {default as Select} from "./components/Select/index"
 export {default as Pagination} from "./components/Pagination/index"

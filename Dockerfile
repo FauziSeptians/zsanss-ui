@@ -20,7 +20,11 @@ RUN rm -rf ./*
 # Copy hasil build dari stage 1 ke folder Nginx
 COPY --from=build /app/storybook-static .
 
-# Ekspos port 80
-EXPOSE 80
+# Ubah Nginx supaya listen di port 8080 (non-privileged),
+# supaya bisa jalan sebagai non-root tanpa perlu capability tambahan
+RUN sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
+
+# Ekspos port 8080
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]

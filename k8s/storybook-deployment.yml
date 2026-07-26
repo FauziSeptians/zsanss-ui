@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: storybook-app
-          image: DOCKER_USERNAME/storybook-app:latest
+          image: muhammadfauzi/storybook-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -57,6 +57,20 @@ spec:
             capabilities:
               drop:
                 - ALL
+          volumeMounts:
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}
+        - name: nginx-conf
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

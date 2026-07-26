@@ -35,6 +35,6 @@ yarn add zsanss-ui
 - Buat Pull Request 🎉
 ```
 
-MIT © 2025 — Developed with ❤️ by Fauziseptians
+MIT © 2025 — Developed with ❤️ by Fauziseptians --
 
 

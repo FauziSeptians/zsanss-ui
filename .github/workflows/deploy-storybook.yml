@@ -22,35 +22,48 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and Push Docker Image
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and Push Docker image
         run: |
-          docker build -t storybook-app .
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker tag storybook-app ${{ secrets.DOCKER_USERNAME }}/storybook-app:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/storybook-app:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/storybook-app:latest
 
   deploy:
     needs: test-and-build
     runs-on: ubuntu-latest
     steps:
-      - name: SSH and Update Server
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy K8s Manifest to Server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: 'k8s/storybook-deployment.yml'
+          target: '/home/${{ secrets.SERVER_USER }}/deployments/storybook-app'
+
+      - name: Deploy to Minikube via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/storybook-app:latest
-            
-            sudo docker stop storybook-web || true
-            sudo docker rm storybook-web || true
-            
-            # Menjalankan Storybook di port 6006
-            sudo docker run -d \
-              --name storybook-web \
-              --restart always \
-              -p 6006:80 \
-              ${{ secrets.DOCKER_USERNAME }}/storybook-app:latest
-            
-            sudo docker image prune -f
+            export HOME=/home/${{ secrets.SERVER_USER }}
+            export KUBECONFIG=$HOME/.kube/config
+
+            cd $HOME/deployments/storybook-app
+
+            if ! minikube status | grep -q "Running"; then
+              minikube start --driver=docker --cpus=2 --memory=3600mb
+              sleep 15
+            fi
+
+            sed -i "s|DOCKER_USERNAME|${{ secrets.DOCKER_USERNAME }}|g" k8s/storybook-deployment.yml
+
+            kubectl apply -f k8s/storybook-deployment.yml
+            kubectl rollout restart deployment storybook-app

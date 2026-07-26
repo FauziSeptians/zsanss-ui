@@ -2,11 +2,9 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copy package files untuk caching layer
 COPY package*.json ./
 RUN npm install
 
-# Copy source code dan build Storybook
 COPY . .
 RUN npm run build-storybook
 
@@ -14,17 +12,17 @@ RUN npm run build-storybook
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-# Hapus file default Nginx
 RUN rm -rf ./*
 
-# Copy hasil build dari stage 1 ke folder Nginx
 COPY --from=build /app/storybook-static .
 
-# Ubah Nginx supaya listen di port 8080 (non-privileged),
-# supaya bisa jalan sebagai non-root tanpa perlu capability tambahan
-RUN sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
+# Copy config Nginx custom (listen di port 8080)
+COPY storybook-nginx-default.conf /etc/nginx/conf.d/default.conf
 
-# Ekspos port 8080
+RUN chown -R nginx:nginx /var/cache/nginx /var/run /usr/share/nginx/html /etc/nginx/conf.d && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
 EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]

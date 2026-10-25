@@ -55,7 +55,7 @@ const DrawerContent = React.forwardRef<
       <DrawerPrimitive.Content
         ref={ref}
         className={classNames(
-          "fixed z-50 flex flex-col border border-gray-200 bg-white transition-all duration-300",
+          "fixed z-50 flex flex-col border border-border bg-surface transition-all duration-300",
           direction === "bottom" && "inset-x-0 bottom-0 mt-24 h-auto rounded-t-[10px]",
           direction === "top" && "inset-x-0 top-0 mb-24 h-auto rounded-b-[10px]",
           direction === "left" && "inset-y-0 left-0 mr-24 w-[85%] sm:w-80 h-full rounded-r-[10px]",
@@ -65,10 +65,10 @@ const DrawerContent = React.forwardRef<
         {...props}
       >
         {direction === "bottom" && (
-          <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-gray-100" />
+          <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-surface-subtle" />
         )}
         {direction === "top" && (
-          <div className="mx-auto mb-4 h-2 w-[100px] rounded-full bg-gray-100 order-last" />
+          <div className="mx-auto mb-4 h-2 w-[100px] rounded-full bg-surface-subtle order-last" />
         )}
         {children}
       </DrawerPrimitive.Content>
@@ -120,7 +120,7 @@ const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={classNames("text-sm text-gray-500", className)}
+    className={classNames("text-sm text-foreground-muted", className)}
     {...props}
   />
 ));

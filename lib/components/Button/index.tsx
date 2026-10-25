@@ -1,85 +1,77 @@
+import { forwardRef } from "react";
 import { ButtonTypes } from "@/types/button";
-import classNames from "@/utils/classNames";
+import { cn } from "@/utils/cn";
 import Spinner from "../Spinner";
+import { buttonVariants } from "./variants";
+
 
 /**
- * `Button` is a customizable and responsive button component that supports multiple visual variants,
- * text sizes, border radius options, and loading/disabled states. It also integrates a spinner
- * when `isProcessing` is active.
+ * `Button` — tombol serbaguna berbasis design token.
  *
- * @component
+ * Mendukung 7 variant, 3 ukuran, 7 radius, `fullWidth`, ikon kiri/kanan,
+ * state loading/disabled, dan `ref` forwarding.
+ *
  * @example
  * ```tsx
- * <Button
- *   variant="primary"
- *   radius="full"
- *   isProcessing={loading}
- *   onClick={() => handleSubmit()}
- * >
- *   Submit
+ * <Button variant="danger" size="sm" leftIcon={<Trash2 size={16} />} onClick={remove}>
+ *   Hapus
  * </Button>
+ *
+ * <Button isProcessing={saving} fullWidth>Simpan</Button>
  * ```
  *
- * @param props - Props extending `ButtonTypes`.
- * @param props.children - Content to be rendered inside the button.
- * @param props.className - Additional Tailwind CSS classes for styling.
- * @param props.isDisable - If true, disables the button and prevents interaction.
- * @param props.isProcessing - If true, shows a loading spinner and disables the button.
- * @param props.typeText - Controls the font size. Options: `"small"` (default), `"medium"`.
- * @param props.variant - Visual style of the button. Options: `"primary"` (default), `"secondary"`, `"bordered"`.
- * @param props.radius - Border radius style. Options: `"md"` (default), `"full"`, `"2xl"`.
- * @param props.onClick - Callback triggered when the button is clicked.
- *
- * @returns A styled `<button>` element with optional loading and disabled states.
+ * @param props.variant - `"primary"` (default), `"secondary"`, `"accent"`, `"bordered"`, `"ghost"`, `"danger"`, `"link"`.
+ * @param props.size - `"sm"`, `"md"` (default), `"lg"`.
+ * @param props.radius - `"none"`, `"sm"`, `"md"` (default), `"lg"`, `"xl"`, `"2xl"`, `"full"`.
+ * @param props.fullWidth - Lebar 100%.
+ * @param props.leftIcon - Ikon sebelum label.
+ * @param props.rightIcon - Ikon setelah label.
+ * @param props.isDisable - Menonaktifkan tombol.
+ * @param props.isProcessing - Menampilkan spinner dan menonaktifkan tombol.
+ * @param props.typeText - **Deprecated**, gunakan `size`.
  */
-export default function Button({
-  children,
-  className,
-  isDisable,
-  isProcessing,
-  typeText = "small",
-  variant = "primary",
-  radius = "md",
-  ...props
-}: ButtonTypes) {
-
-  
-  const getVariant = {
-    ["primary"]: "bg-primary text-white",
-    ["secondary"]: "bg-neutral text-black",
-    ["bordered"]: "border border-primary bg-white",
-  };
-
-  const getTypeText = {
-    ["small"]: "text-md",
-    ["medium"]: "text-lg",
-  };
-
-  const getRadius = {
-    ["full"]: "rounded-full",
-    ["md"]: "rounded-md",
-    ["2xl"]: "rounded-xs",
-  };
+const Button = forwardRef<HTMLButtonElement, ButtonTypes>(function Button(
+  {
+    children,
+    className,
+    isDisable,
+    isProcessing,
+    typeText,
+    size,
+    variant = "primary",
+    radius = "md",
+    fullWidth = false,
+    leftIcon,
+    rightIcon,
+    onClick,
+    ...props
+  },
+  ref,
+) {
+  // `typeText` lama dipetakan ke `size`; `size` eksplisit selalu menang.
+  const resolvedSize = size ?? (typeText === "medium" ? "lg" : "md");
+  const isInactive = Boolean(isDisable || isProcessing);
 
   return (
     <button
       {...props}
-      className={classNames(
-        "px-3 py-2 flex items-center gap-3 cursor-pointer justify-center",
-        getVariant[variant],
-        getTypeText[typeText],
-        getRadius[radius],
-        isDisable ? "!bg-neutral !cursor-not-allowed" : "",
-        className
+      ref={ref}
+      className={cn(
+        buttonVariants({ variant, size: resolvedSize, radius, fullWidth }),
+        className,
       )}
-      disabled={isDisable || isProcessing}
+      disabled={isInactive}
+      aria-busy={isProcessing || undefined}
       onClick={(e) => {
-        if (isDisable || isProcessing) return;
-        props.onClick?.(e);
+        if (isInactive) return;
+        onClick?.(e);
       }}
     >
-      {isProcessing ? <Spinner color="white" /> : null}
+      {isProcessing ? <Spinner size={16} color="currentColor" /> : leftIcon}
       {children}
+      {!isProcessing ? rightIcon : null}
     </button>
   );
-}
+});
+
+export default Button;

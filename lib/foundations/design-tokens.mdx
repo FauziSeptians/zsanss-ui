@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Design Tokens" />
+
+# Design Tokens
+
+Semua warna, font, radius, shadow, dan ukuran teks zsanss-ui berasal dari **satu file**:
+`lib/styles/theme.css`. Komponen tidak boleh memakai palet mentah Tailwind
+(`gray-500`, `blue-600`, `teal-600`, dst) — selalu pakai token.
+
+## Setup di project konsumer (Tailwind v4)
+
+```css
+/* src/index.css */
+@import "tailwindcss";
+@import "zsanss-ui/theme.css";   /* token warna, radius, shadow, font */
+@import "zsanss-ui/fonts.css";   /* opsional: Inter + JetBrains Mono (self-hosted) */
+
+/* Wajib: supaya Tailwind meng-generate class yang dipakai komponen zsanss-ui */
+@source "../node_modules/zsanss-ui/dist";
+```
+
+Mau ganti brand untuk satu client? Override token-nya saja, komponen otomatis ikut:
+
+```css
+@import "zsanss-ui/theme.css";
+
+@theme {
+  --color-primary: #0f766e;
+  --color-primary-600: #0d9488;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+## Tiga lapis token
+
+| Lapis | Contoh | Dipakai untuk |
+| --- | --- | --- |
+| **Skala brand & status** | `primary-600`, `danger-500`, `success-100` | Warna aksi, status, badge, alert |
+| **Semantik** | `bg-surface`, `text-foreground-muted`, `border-border` | Permukaan, teks, garis — dipakai hampir di semua komponen |
+| **Bentuk & tipografi** | `rounded-lg`, `shadow-md`, `text-sm`, `font-sans` | Radius, bayangan, ukuran teks, font |
+
+## Aturan pakai
+
+- ✅ `text-foreground-muted`, `bg-surface-muted`, `border-border`, `bg-primary-600`
+- ❌ `text-gray-500`, `bg-gray-50`, `border-gray-200`, `bg-blue-600`, `bg-teal-600`
+- Status pakai nama semantik: `danger` (bukan red/error), `success` (bukan green), `warning`, `info`.
+- Gabungkan class dengan `cn(...)` (clsx + tailwind-merge) supaya `className` dari konsumer menimpa class bawaan.
+
+Lihat halaman **Colors**, **Typography**, dan **Spacing, Radius & Shadow** di sidebar untuk daftar lengkapnya.

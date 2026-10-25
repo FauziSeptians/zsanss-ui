@@ -13,7 +13,7 @@ export const getTypeClass = (
       case "warning":
          return "text-warning";
       case "danger":
-         return "text-error";
+         return "text-danger";
       default:
          return "";
    }

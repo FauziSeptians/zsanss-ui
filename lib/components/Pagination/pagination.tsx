@@ -5,14 +5,14 @@ import clsx from 'clsx'
 
 // --- Interfaces ---
 
-interface PaginationProps {
+export interface PaginationProps {
   children: ReactNode
   currentPage: number
   totalPages: number
   onChange: (page: number) => void
 }
 
-interface PageButtonProps {
+export interface PageButtonProps {
   page: number | string
   active?: boolean
   disabled?: boolean
@@ -76,8 +76,8 @@ export const PageButton = ({ page, active, disabled, onClick, children }: PageBu
     className={clsx(
       'inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold transition-all',
       active 
-        ? 'bg-teal-600 text-white shadow-sm' 
-        : 'text-gray-900 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed',
+        ? 'bg-primary-600 text-white shadow-sm' 
+        : 'text-foreground hover:bg-surface-subtle disabled:opacity-50 disabled:cursor-not-allowed',
       page === '...' && 'cursor-default hover:bg-transparent'
     )}
   >
@@ -113,7 +113,7 @@ export const Pages = ({ currentPage, totalPages, onChange }: any) => {
       {range.map((p, idx) => (
         <React.Fragment key={idx}>
           {p === '...' ? (
-            <span className="px-2 text-gray-400">
+            <span className="px-2 text-foreground-subtle">
               <MoreHorizontal className="h-4 w-4" />
             </span>
           ) : (

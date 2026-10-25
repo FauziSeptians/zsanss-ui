@@ -87,23 +87,23 @@ export function FormInput<T extends FieldValues>({
 
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      {label && <label className="text-sm font-semibold text-gray-700">{label}</label>}
+      {label && <label className="text-sm font-semibold text-foreground-secondary">{label}</label>}
       <input
         {...register(name)}
         {...props}
         className={classNames(
-          "border p-2 rounded-md transition-all focus:ring-2 focus:ring-blue-500 outline-none",
-          error ? "border-red-500 bg-red-50" : "border-gray-300",
+          "border p-2 rounded-md transition-all focus:ring-2 focus:ring-primary-500 outline-none",
+          error ? "border-danger-500 bg-danger-50" : "border-border-strong",
           className
         )}
       />
       {error && (
-        <span className="text-xs text-red-500 font-medium">
+        <span className="text-xs text-danger-500 font-medium">
           {error.message as string}
         </span>
       )}
       {helperText && !error && (
-        <span className="text-xs text-gray-400">{helperText}</span>
+        <span className="text-xs text-foreground-subtle">{helperText}</span>
       )}
     </div>
   );
@@ -127,19 +127,19 @@ export function FormTextArea<T extends FieldValues>({
 
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      {label && <label className="text-sm font-semibold text-gray-700">{label}</label>}
+      {label && <label className="text-sm font-semibold text-foreground-secondary">{label}</label>}
       <textarea
         {...register(name)}
         {...props}
         rows={rows}
         className={classNames(
-          "border p-2 rounded-md transition-all focus:ring-2 focus:ring-blue-500 outline-none resize-none",
-          error ? "border-red-500 bg-red-50" : "border-gray-300",
+          "border p-2 rounded-md transition-all focus:ring-2 focus:ring-primary-500 outline-none resize-none",
+          error ? "border-danger-500 bg-danger-50" : "border-border-strong",
           className
         )}
       />
       {error && (
-        <span className="text-xs text-red-500 font-medium">
+        <span className="text-xs text-danger-500 font-medium">
           {error.message as string}
         </span>
       )}

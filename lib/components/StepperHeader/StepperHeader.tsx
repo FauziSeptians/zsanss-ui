@@ -39,10 +39,10 @@ export function StepperItem({ label, index = 0, isActive, isCompleted }: Stepper
         className={classNames(
           "w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300",
           isCompleted
-            ? "bg-green-500 border-green-500 text-white"
+            ? "bg-success-500 border-success-500 text-white"
             : isActive
-            ? "border-blue-600 text-blue-600 font-bold shadow-sm shadow-blue-100"
-            : "border-gray-300 text-gray-400"
+            ? "border-primary-600 text-primary-600 font-bold shadow-sm shadow-primary-100"
+            : "border-border-strong text-foreground-subtle"
         )}
       >
         {isCompleted ? (
@@ -56,7 +56,7 @@ export function StepperItem({ label, index = 0, isActive, isCompleted }: Stepper
       <span
         className={classNames(
           "text-sm font-medium transition-colors duration-300 whitespace-nowrap",
-          isActive ? "text-blue-600" : isCompleted ? "text-gray-900" : "text-gray-400"
+          isActive ? "text-primary-600" : isCompleted ? "text-foreground" : "text-foreground-subtle"
         )}
       >
         {label}
@@ -95,7 +95,7 @@ export default function StepperHeaderRoot({ currentStep, children, className }: 
 
             {/* Separator > otomatis kecuali di akhir */}
             {!isLast && (
-              <div className="flex-1 flex justify-center text-gray-300 mx-4">
+              <div className="flex-1 flex justify-center text-neutral-300 mx-4">
                 <ChevronRight size={20} strokeWidth={1.5} />
               </div>
             )}

@@ -75,7 +75,7 @@ function InputDropdown({
         {...props}
         aria-label={label}
         className={classNames(
-          isDropdownOpen ? "border-primary" : "border-neutral-200",
+          isDropdownOpen ? "border-primary" : "border-border",
           "border-b-[1px] py-3 cursor-pointer w-full flex justify-between items-center"
         )}
         onClick={() => setIsOpenDropdown((prev) => !prev)}
@@ -87,7 +87,7 @@ function InputDropdown({
         <div
           className={classNames(
             hasSearchChild
-              ? "py-3 px-2 bg-white border border-neutral-200 rounded-b-md"
+              ? "py-3 px-2 bg-surface border border-border rounded-b-md"
               : ""
           )}
         >

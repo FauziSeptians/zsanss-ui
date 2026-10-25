@@ -19,7 +19,7 @@ interface SectionWrapperProps {
  */
 export default function SectionWrapper({
   children,
-  topColor = "from-white",
+  topColor = "from-surface",
   bottomColor = "from-black",
   gradientHeight = "h-40",
   className,

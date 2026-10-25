@@ -27,7 +27,7 @@ function StepperInteractive() {
   const back = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12 p-8 bg-white rounded-xl shadow-sm border">
+    <div className="max-w-4xl mx-auto space-y-12 p-8 bg-surface rounded-xl shadow-sm border">
       <StepperHeader currentStep={currentStep}>
         <StepperHeader.Item step={1} label="Informasi Dasar" />
         <StepperHeader.Item step={2} label="Detail Properti" />
@@ -39,14 +39,14 @@ function StepperInteractive() {
         <button
           onClick={back}
           disabled={currentStep === 1}
-          className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="px-6 py-2 border border-border-strong rounded-lg text-sm font-medium hover:bg-surface-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all"
         >
           Kembali
         </button>
         <button
           onClick={next}
           disabled={currentStep === 4}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm shadow-blue-200"
+          className="px-6 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm shadow-primary-200"
         >
           {currentStep === 4 ? "Selesai" : `Lanjut ke Step ${currentStep + 1}`}
         </button>

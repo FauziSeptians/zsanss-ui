@@ -32,10 +32,10 @@ export const PropertyListing: StoryObj<typeof Form> = {
     };
 
     return (
-      <div className="w-[450px] p-8 bg-white border border-gray-200 rounded-2xl shadow-sm">
+      <div className="w-[450px] p-8 bg-surface border border-border rounded-2xl shadow-sm">
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Pasang Iklan</h2>
-          <p className="text-sm text-gray-500">Lengkapi detail properti industrial Anda.</p>
+          <h2 className="text-2xl font-bold text-foreground">Pasang Iklan</h2>
+          <p className="text-sm text-foreground-muted">Lengkapi detail properti industrial Anda.</p>
         </div>
 
         <Form 
@@ -74,7 +74,7 @@ export const PropertyListing: StoryObj<typeof Form> = {
 
           <button 
             type="submit" 
-            className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition-all active:scale-[0.98]"
+            className="w-full bg-neutral-900 text-white py-2.5 rounded-lg font-semibold hover:bg-neutral-800 transition-all active:scale-[0.98]"
           >
             Publikasikan Iklan
           </button>
@@ -99,7 +99,7 @@ export const ManufacturingInquiry: StoryObj<typeof Form> = {
     type InquiryType = z.infer<typeof inquirySchema>;
 
     return (
-      <div className="w-[450px] p-8 bg-gray-50 border border-gray-200 rounded-2xl">
+      <div className="w-[450px] p-8 bg-surface-muted border border-border rounded-2xl">
         <h2 className="text-xl font-black uppercase tracking-tight mb-6">WAFZ Production Request</h2>
         
         <Form 
@@ -133,7 +133,7 @@ export const ManufacturingInquiry: StoryObj<typeof Form> = {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 disabled:bg-blue-300 text-white py-2.5 rounded-lg font-bold flex items-center justify-center gap-2"
+                className="w-full bg-primary-600 disabled:bg-primary-300 text-white py-2.5 rounded-lg font-bold flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>

@@ -44,7 +44,7 @@ function Dropdown({
     <div
       className={classNames(
         item && item?.length > 2 ? "max-h-36 overflow-y-auto" : "h-fit",
-        "mt-2 border border-primary shadow-sm bg-white flex flex-col",
+        "mt-2 border border-primary shadow-sm bg-surface flex flex-col",
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ function Dropdown({
               <div
                 className={classNames(
                   isHighlight ? "border-none" : "border-b-[1px]",
-                  "border-slate-300 w-full h-full mx-2 py-3 flex justify-start"
+                  "border-neutral-300 w-full h-full mx-2 py-3 flex justify-start"
                 )}
               >
                 <Typography.Text highlightText={searchValue}>

@@ -45,7 +45,7 @@ export function ModalBody({
   return (
     <DialogPanel
       className={classNames(
-        "w-full transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all",
+        "w-full transform overflow-hidden rounded-md bg-surface p-6 text-left align-middle shadow-xl transition-all",
         className
       )}
     >
@@ -61,7 +61,7 @@ export function ModalHeader({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="mb-4 text-lg font-semibold leading-6 text-gray-900">
+    <div className="mb-4 text-lg font-semibold leading-6 text-foreground">
       {children}
     </div>
   );

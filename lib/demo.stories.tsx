@@ -14,7 +14,7 @@ export const Showcase = () => {
   const [valueInput, setValueInput] = useState("");
 
   return (
-    <div className="w-full min-h-screen p-8 flex flex-col gap-16 bg-gray-50">
+    <div className="w-full min-h-screen p-8 flex flex-col gap-16 bg-surface-muted">
       {/* Typography Section */}
       <section className="flex flex-col gap-6">
         <Typography.Title className="text-3xl font-bold">
@@ -66,7 +66,7 @@ export const Showcase = () => {
           Layout Example
         </Typography.Title>
         <Layout>
-          <div className="p-4 bg-white rounded-md shadow">
+          <div className="p-4 bg-surface rounded-md shadow">
             This is a layout container. You can place any content here.
           </div>
         </Layout>
@@ -127,7 +127,7 @@ export const Showcase = () => {
             <Typography.Text bold underline>
               Result
             </Typography.Text>
-            <p className="w-full text-xs text-red-600">{valueInput}</p>
+            <p className="w-full text-xs text-danger-600">{valueInput}</p>
           </div>
         </div>
       </section>

@@ -23,12 +23,25 @@ npm install zsanss-ui@latest
 yarn add zsanss-ui
 ```
 
+## 🎨 Setup (Tailwind CSS v4)
+
+```css
+/* src/index.css */
+@import "tailwindcss";
+@import "zsanss-ui/theme.css";   /* design token: warna, radius, shadow, font */
+@import "zsanss-ui/fonts.css";   /* opsional: Inter + JetBrains Mono */
+@source "../node_modules/zsanss-ui/dist";
+```
+
+Detail token ada di section **Foundations** (Design Tokens, Colors, Typography, Spacing/Radius/Shadow).
+
 ## 📚 Components
 - Typography → Title, Text
 - Layout → Sidebar, Layout
 - Card → Card, Description
 - Image → Image
-- Button → variant, isDisable, isProcessing
+- Button → variant, size, radius, fullWidth, leftIcon, rightIcon, isDisable, isProcessing
+- Input, Select, Form, Modal, Drawer, Dropdown, Tab, Table, Pagination, Stepper, Spinner, ScrollSection, SectionWrapper
 
 ## 🤝 Contributing
 ```bash

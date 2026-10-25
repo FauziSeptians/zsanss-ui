@@ -58,7 +58,7 @@ export default function Image({
   return (
     <div
       className={classNames(
-        "relative w-full max-h-60 overflow-hidden shadow-md bg-gray-100 h-full",
+        "relative w-full max-h-60 overflow-hidden shadow-md bg-surface-subtle h-full",
         className
       )}
       style={{
@@ -70,7 +70,7 @@ export default function Image({
         <Spinner className="w-full h-full flex justify-center items-center" />
       )}
       {!loaded && error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-foreground-subtle">
           <ImageOff size={40} />
           <span className="text-sm">Failed to load image</span>
         </div>

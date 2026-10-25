@@ -46,8 +46,8 @@ const TableTemplate = () => {
       header: 'User Info',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-gray-900">{row.original.name}</span>
-          <span className="text-xs text-gray-400">ID: {row.original.id}</span>
+          <span className="font-semibold text-foreground">{row.original.name}</span>
+          <span className="text-xs text-foreground-subtle">ID: {row.original.id}</span>
         </div>
       ),
     },
@@ -55,8 +55,8 @@ const TableTemplate = () => {
       accessorKey: 'email',
       header: 'Contact',
       cell: ({ getValue }) => (
-        <div className="flex items-center gap-2 text-gray-600">
-          <Mail className="h-4 w-4 text-gray-400" />
+        <div className="flex items-center gap-2 text-foreground-secondary">
+          <Mail className="h-4 w-4 text-foreground-subtle" />
           {getValue()}
         </div>
       ),
@@ -72,7 +72,7 @@ const TableTemplate = () => {
         const status = getValue()
         return (
           <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase ${
-            status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+            status === 'Active' ? 'bg-success-100 text-success-700' : 'bg-danger-100 text-danger-700'
           }`}>
             {status}
           </span>
@@ -84,10 +84,10 @@ const TableTemplate = () => {
       header: 'Actions',
       cell: () => (
         <div className="flex gap-2">
-          <button className="p-1.5 hover:bg-gray-100 rounded text-blue-600 transition-colors">
+          <button className="p-1.5 hover:bg-surface-subtle rounded text-primary-600 transition-colors">
             <Edit3 className="h-4 w-4" />
           </button>
-          <button className="p-1.5 hover:bg-red-50 rounded text-red-600 transition-colors">
+          <button className="p-1.5 hover:bg-danger-50 rounded text-danger-600 transition-colors">
             <Trash2 className="h-4 w-4" />
           </button>
         </div>
@@ -106,10 +106,10 @@ const TableTemplate = () => {
     <div className="max-w-5xl mx-auto">
       <div className="mb-4 flex justify-between items-end">
         <div>
-          <h2 className="text-xl font-bold text-gray-800">User Management</h2>
-          <p className="text-sm text-gray-500">Daftar pengguna terdaftar di sistem.</p>
+          <h2 className="text-xl font-bold text-foreground">User Management</h2>
+          <p className="text-sm text-foreground-muted">Daftar pengguna terdaftar di sistem.</p>
         </div>
-        <button className="flex items-center gap-2 bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 transition-all">
+        <button className="flex items-center gap-2 bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition-all">
           <ExternalLink className="h-4 w-4" />
           Export Data
         </button>

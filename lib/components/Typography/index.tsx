@@ -53,13 +53,13 @@ const TypographyComponent: React.FC<TypographyProps> = ({
     let classes = '';
     switch (variant) {
       case 'primary':
-        classes += 'text-gray-900 ';
+        classes += 'text-foreground ';
         break;
       case 'secondary':
-        classes += 'text-gray-700 ';
+        classes += 'text-foreground-secondary ';
         break;
       case 'muted':
-        classes += 'text-gray-500 ';
+        classes += 'text-foreground-muted ';
         break;
     }
     return classes + className;

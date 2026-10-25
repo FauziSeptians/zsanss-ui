@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'node:url';
+import pkg from "./package.json" with { type: "json" };
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
@@ -14,6 +15,7 @@ export default defineConfig({
   plugins: [tailwindcss(), react(), tsconfigPaths(), dts({
     tsconfigPath: "./tsconfig.app.json",
     include: ["lib"],
+    exclude: ["lib/**/*.stories.tsx", "lib/**/*.stories.ts", "lib/foundations/**"],
     insertTypesEntry: true
   })],
   resolve: {
@@ -29,6 +31,23 @@ export default defineConfig({
       fileName: "zsanss-ui",
       entry: path.resolve(__dirname, "./lib/main.ts"),
       formats: ["es", "umd"]
+    },
+    rollupOptions: {
+      // Semua dependencies + peerDependencies dibuat eksternal (termasuk subpath-nya).
+      // Kalau React ikut ter-bundle, konsumer bisa kena "Invalid hook call" (dua salinan React);
+      // dependency lain akan di-install & di-dedupe oleh package manager konsumer.
+      external: [
+        ...Object.keys(pkg.dependencies ?? {}),
+        ...Object.keys(pkg.peerDependencies ?? {}),
+        "react/jsx-runtime",
+      ].map((name) => new RegExp(`^${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(/.*)?$`)),
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "react/jsx-runtime": "jsxRuntime"
+        }
+      }
     }
   },
   test: {

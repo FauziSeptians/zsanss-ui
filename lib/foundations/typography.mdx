@@ -1,0 +1,87 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Section, FontFamilyCard, TypeRow } from './blocks';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Satu font untuk seluruh library: **Inter (variable)** — dipilih karena rapat, terbaca di ukuran
+kecil, dan punya angka tabular, cocok untuk antarmuka data-padat seperti ERP.
+Kode dan nilai teknis memakai **JetBrains Mono**.
+
+```css
+@import "zsanss-ui/fonts.css";   /* Inter + JetBrains Mono, self-hosted via Fontsource */
+```
+
+Tidak mau memakai font ini? Cukup override token di project kamu:
+`@theme { --font-sans: "Nama Font", ui-sans-serif, system-ui, sans-serif; }`
+
+<Section title="Font family">
+  <div className="grid gap-4 md:grid-cols-2">
+    <FontFamilyCard varName="--font-sans" label="Sans — default seluruh UI">
+      <div className="text-2xl font-semibold">Laporan Penjualan Oktober</div>
+      <div className="mt-1 text-sm text-foreground-muted">
+        Quick brown fox jumps over the lazy dog 0123456789
+      </div>
+    </FontFamilyCard>
+    <FontFamilyCard varName="--font-mono" label="Mono — kode, SKU, nomor dokumen">
+      <div className="text-lg">INV-2026-000184</div>
+      <div className="mt-1 text-sm text-foreground-muted">SKU: BRG-0042-XL · {'{ "qty": 12 }'}</div>
+    </FontFamilyCard>
+  </div>
+</Section>
+
+<Section
+  title="Skala ukuran"
+  description="Ukuran dan line-height berasal dari token --text-*. Pakai class text-xs … text-4xl."
+>
+  <div>
+    <TypeRow token="xs" sample="Caption, badge, helper text" />
+    <TypeRow token="sm" sample="Body default untuk tabel & form (ERP)" />
+    <TypeRow token="base" sample="Body nyaman untuk bacaan panjang" />
+    <TypeRow token="lg" sample="Sub-judul, tombol besar" />
+    <TypeRow token="xl" sample="Judul card & modal" />
+    <TypeRow token="2xl" sample="Judul halaman" />
+    <TypeRow token="3xl" sample="Judul section besar" />
+    <TypeRow token="4xl" sample="Hero / angka KPI" />
+  </div>
+</Section>
+
+<Section title="Bobot (weight)" description="Inter variable mendukung 100–900. Cukup pakai empat ini.">
+  <div className="sb-unstyled grid gap-2 font-sans text-lg sm:grid-cols-2">
+    <div className="font-normal">Regular 400 — isi teks</div>
+    <div className="font-medium">Medium 500 — label, tombol</div>
+    <div className="font-semibold">Semibold 600 — judul kecil, header tabel</div>
+    <div className="font-bold">Bold 700 — angka penting, KPI</div>
+  </div>
+</Section>
+
+<Section
+  title="Angka untuk ERP: gunakan tabular-nums"
+  description="Pada kolom nominal, tambahkan tabular-nums agar digit berukuran sama dan koma/titik desimal sejajar."
+>
+  <div className="sb-unstyled grid gap-4 font-sans sm:grid-cols-2">
+    <div className="rounded-lg border border-border p-4">
+      <div className="mb-2 text-xs font-semibold uppercase text-foreground-muted">Tanpa tabular-nums</div>
+      <div className="space-y-1 text-right text-lg">
+        <div>Rp 1.111.111,00</div>
+        <div>Rp 8.888.888,00</div>
+        <div>Rp 1.000.101,00</div>
+      </div>
+    </div>
+    <div className="rounded-lg border border-border p-4">
+      <div className="mb-2 text-xs font-semibold uppercase text-foreground-muted">Dengan tabular-nums</div>
+      <div className="space-y-1 text-right text-lg tabular-nums">
+        <div>Rp 1.111.111,00</div>
+        <div>Rp 8.888.888,00</div>
+        <div>Rp 1.000.101,00</div>
+      </div>
+    </div>
+  </div>
+</Section>
+
+## Panduan singkat
+
+- Teks tabel & form: `text-sm`. Judul halaman: `text-2xl font-semibold`.
+- Selalu pakai warna teks semantik (`text-foreground`, `text-foreground-muted`), bukan `text-gray-*`.
+- Jangan set `font-family` manual di komponen; font diwarisi dari `--font-sans`.

@@ -20,7 +20,7 @@ const PaginationTemplate = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 p-8">
-      <p className="text-sm text-gray-500">Halaman Aktif: <span className="font-bold">{page}</span></p>
+      <p className="text-sm text-foreground-muted">Halaman Aktif: <span className="font-bold">{page}</span></p>
       <Pagination 
         currentPage={page} 
         totalPages={total} 

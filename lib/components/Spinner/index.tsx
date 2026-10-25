@@ -13,12 +13,12 @@ import { LoaderCircle } from "lucide-react";
  *
  * @param props - Props for customizing the spinner.
  * @param props.size - The size of the spinner icon in pixels. Default is `32`.
- * @param props.color - The color of the spinner stroke. Accepts any valid CSS color. Default is `"gray"`.
+ * @param props.color - The color of the spinner stroke. Accepts any valid CSS color. Default is `"currentColor"` (inherits the parent's text color).
  * @param props.className - Additional Tailwind CSS classes to apply to the wrapper container.
  *
  * @returns A spinning loader icon centered within a flex container.
  */
-export default function Spinner({ size = 32, color = "gray", className = "" }) {
+export default function Spinner({ size = 32, color = "currentColor", className = "" }) {
   return (
     <div className={classNames(className, "flex items-center justify-center")}>
       <LoaderCircle

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 import  { useState } from 'react'
 import Select from './index'
@@ -83,7 +82,7 @@ const InfiniteTemplate = () => {
 
   return (
     <div className="w-80 h-96">
-      <label className="text-sm font-bold text-gray-600 mb-2 block">Scroll ke bawah untuk load data</label>
+      <label className="text-sm font-bold text-foreground-secondary mb-2 block">Scroll ke bawah untuk load data</label>
       <Select value={selected} onChange={setSelected} setQuery={setQuery}>
         <Select.Input 
           displayValue={(u: User) => u?.name || ''} 
@@ -126,7 +125,7 @@ export const NoResults: Story = {
           <Select value={val} onChange={setVal} setQuery={() => {}}>
             <Select.Input displayValue={() => ''} onChange={() => {}} placeholder="Ketik apa saja..." />
             <Select.List>
-              <div className="p-4 text-center text-sm text-gray-500 italic">
+              <div className="p-4 text-center text-sm text-foreground-muted italic">
                 Data tidak ditemukan
               </div>
             </Select.List>

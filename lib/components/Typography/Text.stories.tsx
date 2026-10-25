@@ -92,6 +92,6 @@ export const WithHighlight: Story = {
 export const CustomClass: Story = {
   args: {
     children: "Teks dengan custom class",
-    className: "text-red-500",
+    className: "text-danger-500",
   },
 };

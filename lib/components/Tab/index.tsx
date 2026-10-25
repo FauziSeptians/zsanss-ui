@@ -57,9 +57,9 @@ export default function TabWrapper({
   };
 
   const getVariant = {
-    [VARIANT_TAB.UNDERLINE]: "bg-white",
+    [VARIANT_TAB.UNDERLINE]: "bg-surface",
     [VARIANT_TAB.DEFAULT]: "bg-neutral/50",
-    [VARIANT_TAB.BORDERED]: "bg-white border-[1px]",
+    [VARIANT_TAB.BORDERED]: "bg-surface border-[1px]",
   };
 
   const getHighlightColor = {

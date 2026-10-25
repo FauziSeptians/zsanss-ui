@@ -79,19 +79,19 @@ export function DataTable<TData extends object, TValue>({
 
   return (
     <div className={clsx("w-full space-y-4", className)}>
-      <div className="rounded-md border border-gray-200 bg-white overflow-hidden shadow-sm relative">
+      <div className="rounded-md border border-border bg-surface overflow-hidden shadow-sm relative">
         
         {/* Loading Overlay */}
         {loading && (
-          <div className="absolute inset-0 z-10 bg-white/60 flex items-center justify-center backdrop-blur-[1px] transition-all">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-500 border-t-transparent" />
+          <div className="absolute inset-0 z-10 bg-surface/60 flex items-center justify-center backdrop-blur-[1px] transition-all">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
           </div>
         )}
 
         <table className="w-full text-sm text-left">
-          <thead className="bg-gray-50 text-gray-700 uppercase text-xs font-semibold">
+          <thead className="bg-surface-muted text-foreground-secondary uppercase text-xs font-semibold">
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b border-gray-200">
+              <tr key={headerGroup.id} className="border-b border-border">
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} className="px-6 py-4">
                     {header.isPlaceholder
@@ -105,12 +105,12 @@ export function DataTable<TData extends object, TValue>({
               </tr>
             ))}
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y divide-border">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={row.id} className="hover:bg-surface-muted transition-colors">
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-6 py-4 text-gray-600">
+                    <td key={cell.id} className="px-6 py-4 text-foreground-secondary">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
@@ -118,7 +118,7 @@ export function DataTable<TData extends object, TValue>({
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className="h-32 text-center text-gray-500">
+                <td colSpan={columns.length} className="h-32 text-center text-foreground-muted">
                   {loading ? 'Sedang mengambil data...' : 'Tidak ada data ditemukan.'}
                 </td>
               </tr>
@@ -129,8 +129,8 @@ export function DataTable<TData extends object, TValue>({
 
       {/* Footer Section: Info halaman & Pagination Control */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
-        <p className="text-sm text-gray-500 font-medium order-2 sm:order-1">
-          Menampilkan halaman <span className="text-gray-900">{currentPage}</span> dari <span className="text-gray-900">{pageCount}</span>
+        <p className="text-sm text-foreground-muted font-medium order-2 sm:order-1">
+          Menampilkan halaman <span className="text-foreground">{currentPage}</span> dari <span className="text-foreground">{pageCount}</span>
         </p>
         <div className="order-1 sm:order-2">
           <Pagination 

@@ -1,0 +1,8 @@
+/*
+ * zsanss-ui — Fonts (opsional, self-hosted via Fontsource)
+ *
+ * Konsumer: `import "zsanss-ui/fonts.css";` (atau @import di CSS)
+ * Kalau sudah punya font sendiri, cukup override `--font-sans` di @theme.
+ */
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";

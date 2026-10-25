@@ -1,0 +1,72 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorScale, SemanticTable, Section } from './blocks';
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+Klik swatch untuk menyalin nama CSS variable. Nilai hex dibaca langsung dari
+`lib/styles/theme.css`, jadi selalu sinkron dengan kode.
+
+<Section
+  title="Semantik — surface, teks, dan garis"
+  description="Dipakai di hampir semua komponen. Utamakan token ini sebelum skala warna mentah."
+>
+  <SemanticTable
+    tokens={[
+      { varName: '--color-background', utility: 'bg-background', usage: 'Latar halaman.' },
+      { varName: '--color-surface', utility: 'bg-surface', usage: 'Card, modal, dropdown, tabel, input.' },
+      { varName: '--color-surface-muted', utility: 'bg-surface-muted', usage: 'Header tabel, hover row, area sekunder.' },
+      { varName: '--color-surface-subtle', utility: 'bg-surface-subtle', usage: 'Tombol secondary/ghost hover, chip, track.' },
+      { varName: '--color-foreground', utility: 'text-foreground', usage: 'Teks utama, judul, nilai penting.' },
+      { varName: '--color-foreground-secondary', utility: 'text-foreground-secondary', usage: 'Isi tabel, label form, teks pendukung.' },
+      { varName: '--color-foreground-muted', utility: 'text-foreground-muted', usage: 'Deskripsi, helper text, placeholder kuat.' },
+      { varName: '--color-foreground-subtle', utility: 'text-foreground-subtle', usage: 'Ikon pasif, placeholder, teks disabled.' },
+      { varName: '--color-border', utility: 'border-border', usage: 'Garis default: card, tabel, divider, input.' },
+      { varName: '--color-border-strong', utility: 'border-border-strong', usage: 'Garis yang perlu lebih tegas (mis. field aktif).' },
+      { varName: '--color-ring', utility: 'ring-ring / outline-ring', usage: 'Fokus keyboard. Jangan dihilangkan.' },
+    ]}
+  />
+</Section>
+
+<ColorScale
+  name="primary"
+  title="Primary — biru"
+  description="Warna brand utama: tombol utama, link, item aktif, fokus. Default = 800 (#1E40AF)."
+/>
+
+<ColorScale
+  name="secondary"
+  title="Secondary — amber"
+  description="Aksen brand: highlight, badge promosi, CTA sekunder (Button variant=accent). Default = 500."
+/>
+
+<ColorScale
+  name="neutral"
+  title="Neutral — slate"
+  description="Teks, garis, dan permukaan. Menggantikan semua pemakaian gray/slate/zinc. Default = 500."
+/>
+
+<ColorScale
+  name="success"
+  title="Success — hijau"
+  description="Berhasil, tersimpan, status aktif/lunas."
+/>
+
+<ColorScale
+  name="warning"
+  title="Warning — oranye"
+  description="Perlu perhatian: stok menipis, jatuh tempo mendekat, perubahan belum disimpan."
+/>
+
+<ColorScale
+  name="danger"
+  title="Danger — merah"
+  description="Error, validasi gagal, aksi destruktif (hapus, batalkan transaksi)."
+/>
+
+<ColorScale
+  name="info"
+  title="Info — biru langit"
+  description="Informasi netral, tips, status proses."
+/>

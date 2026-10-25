@@ -68,11 +68,11 @@ export const CardDescriptionWithCustomChildren: Story = {
   render: () => (
     <Card>
       <Card.Description title="Custom Content" underline description="test">
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-foreground-secondary">
           You can also pass children here for more flexible layouts.
         </p>
         <div className="mt-2">
-          <button className="px-3 py-1 bg-blue-500 text-white rounded-md">
+          <button className="px-3 py-1 bg-primary-500 text-white rounded-md">
             Action
           </button>
         </div>

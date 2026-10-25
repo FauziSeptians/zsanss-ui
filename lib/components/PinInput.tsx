@@ -2,9 +2,9 @@ import classNames from "lib/utils/classNames";
 import { useEffect, useRef, useState } from "react";
 
 export const SizeMapper: Record<"sm" | "md" | "lg", string> = {
-  sm: "ui-h-3 ui-w-3",
-  md: "ui-h-4 ui-w-4",
-  lg: "ui-h-6 ui-w-6",
+  sm: "h-3 w-3",
+  md: "h-4 w-4",
+  lg: "h-6 w-6",
 };
 
 export interface PinInputProps {
@@ -134,12 +134,12 @@ export default function PinInput({
 
   return (
     <div
-      className={classNames(className, "ui-w-full ui-max-w-md")}
+      className={classNames(className, "w-full max-w-md")}
       ref={containerRef}
       onClick={handleContainerClick}
     >
       <input
-        className="ui-absolute ui-left-[-9999px] ui-w-[1px] ui-h-[1px] ui-opacity-0 ui-pointer-events-none"
+        className="absolute left-[-9999px] w-[1px] h-[1px] opacity-0 pointer-events-none"
         ref={hiddenInputRef}
         type="tel"
         inputMode="numeric"
@@ -153,7 +153,7 @@ export default function PinInput({
         tabIndex={0}
       />
       <div
-        className="ui-flex ui-items-center ui-justify-center ui-space-x-4"
+        className="flex items-center justify-center space-x-4"
         role="group"
         aria-label="Enter PIN code"
       >
@@ -166,7 +166,7 @@ export default function PinInput({
                 key={`${value}-${index}`}
                 className={classNames(
                   SizeMapper[size],
-                  "ui-flex ui-items-center ui-justify-center ui-text-center ui-text-lg ui-font-semibold ui-cursor-pointer",
+                  "flex items-center justify-center text-center text-lg font-semibold cursor-pointer",
                 )}
                 onClick={handleContainerClick}
               >
@@ -177,10 +177,10 @@ export default function PinInput({
             <button
               key={`${value}-${index}`}
               className={classNames(
-                value ? "ui-bg-secondary" : "ui-bg-gray-200",
-                activeIndex === index ? "ui-ring-2 ui-ring-primary-200" : "",
+                value ? "bg-secondary" : "bg-neutral-200",
+                activeIndex === index ? "ring-2 ring-primary-200" : "",
                 SizeMapper[size],
-                "ui-cursor-pointer ui-rounded-full ui-transition-all ui-duration-200 hover:ui-bg-gray-300 focus:ui-outline-none focus:ui-ring-2 focus:ui-ring-primary-500",
+                "cursor-pointer rounded-full transition-all duration-200 hover:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500",
               )}
               id={`${id}-${index}`}
               data-testid={`${id}-${index}`}

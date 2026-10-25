@@ -1,2 +1,6 @@
 @import "tailwindcss";
-@import "./theme.css"
+@import "../lib/styles/theme.css";
+@import "../lib/styles/fonts.css";
+
+/* Pastikan semua class di lib/ ikut ter-generate (dev app & Storybook) */
+@source "../lib";

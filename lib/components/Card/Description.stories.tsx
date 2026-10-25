@@ -90,8 +90,8 @@ export const WithFormatting: Story = {
 export const WithChildren: Story = {
   render: (args) => (
     <Description {...args}>
-      <h4 className="text-blue-600">Custom Child Content</h4>
-      <p className="text-sm text-gray-600">
+      <h4 className="text-primary-600">Custom Child Content</h4>
+      <p className="text-sm text-foreground-secondary">
         You can pass any React node as children instead of using `title` and `description`.
       </p>
     </Description>

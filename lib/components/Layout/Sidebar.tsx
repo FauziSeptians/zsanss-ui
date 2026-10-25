@@ -50,7 +50,7 @@ function MenuComponent(
                   ? `border rounded-lg shadow-xs bg-[${COLOR.MENU_SELECTED_COLOR}]`
                   : "",
                isSidebarOpen ? "justify-between" : "justify-center",
-               "p-3 cursor-pointer flex items-center hover:bg-slate-200"
+               "p-3 cursor-pointer flex items-center hover:bg-neutral-200"
             )}
          >
             <div className="flex items-center justify-center text-center gap-3">
@@ -102,7 +102,7 @@ function SubMenuComponent(
                item?.isMenuSelected
                   ? `border rounded-lg shadow-xs bg-[${COLOR.MENU_SELECTED_COLOR}]`
                   : "",
-               "px-4 py-5 cursor-pointer flex justify-between items-center hover:bg-slate-200 border-b"
+               "px-4 py-5 cursor-pointer flex justify-between items-center hover:bg-neutral-200 border-b"
             )}
          >
             <div className="flex items-center gap-3">
@@ -230,7 +230,7 @@ export default function Sidebar(props: LayoutTypes) {
             )}
          >
             <button
-               className="z-50 absolute !bg-white p-2 rounded-full top-[50%] -right-5 cursor-pointer animate-pulse group-hover:flex hidden"
+               className="z-50 absolute !bg-surface p-2 rounded-full top-[50%] -right-5 cursor-pointer animate-pulse group-hover:flex hidden"
                onClick={() => setIsSidebarOpen((prev) => !prev)}
             >
                {isSidebarOpen ? <ChevronLeft /> : <ChevronRight />}

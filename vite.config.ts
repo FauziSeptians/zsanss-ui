@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [tailwindcss(), react(), tsconfigPaths(), dts({
     tsconfigPath: "./tsconfig.app.json",
     include: ["lib"],
-    exclude: ["lib/**/*.stories.tsx", "lib/**/*.stories.ts", "lib/foundations/**"],
+    exclude: ["lib/**/*.stories.tsx", "lib/**/*.stories.ts", "lib/**/*.test.ts", "lib/**/*.test.tsx", "lib/foundations/**"],
     insertTypesEntry: true
   })],
   resolve: {

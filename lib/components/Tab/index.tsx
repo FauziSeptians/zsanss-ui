@@ -1,43 +1,40 @@
 import { COLOR, SIZE, VARIANT_TAB } from "@/constants/tab";
 import { TabTypes } from "@/types/tab";
-import classNames from "@/utils/classNames";
+import { cn } from "@/utils/cn";
+import { Tabs } from "@base-ui/react/tabs";
 import { useState } from "react";
 import Typography from "../Typography";
 
-
-
 /**
- * `TabWrapper` is a customizable tab navigation component that renders a horizontal list of tabs
- * with support for multiple visual variants, highlight colors, and border radius styles.
- * It manages internal state for the selected tab and applies dynamic styling based on the active tab.
+ * `TabWrapper` — navigasi tab horizontal berbasis Base UI Tabs.
  *
- * This component is commonly used to switch between views or filter content sections.
+ * Keyboard (panah kiri/kanan, Home, End), ARIA (`tablist`/`tab`/`tabpanel`),
+ * dan tab disabled ditangani otomatis. Bisa uncontrolled (`defaultValue`) atau
+ * controlled (`value` + `onValueChange`).
  *
- * @component
  * @example
  * ```tsx
  * <TabWrapper
  *   item={[
- *     { key: 'overview', value: 'Overview' },
- *     { key: 'details', value: 'Details' },
+ *     { key: "overview", value: "Overview" },
+ *     { key: "details", value: "Details" },
+ *     { key: "audit", value: "Audit", disabled: true },
  *   ]}
  *   variant="underline"
- *   radius="md"
- *   highlightColor="primary"
+ *   onValueChange={(key) => setTab(key)}
  * >
- *   <div>Tab content goes here</div>
+ *   {(active) => <Content tab={active} />}
  * </TabWrapper>
  * ```
  *
- * @param props - Props extending `TabTypes`.
- * @param props.item - Array of tab objects with `key` and `value` used to render each tab.
- * @param props.variant - Visual style of the tab container. Options: `"default"`, `"underline"`, `"bordered"`. Default is `"default"`.
- * @param props.radius - Border radius of each tab. Options: `"full"`, `"lg"`, `"md"`, `"sm"`. Default is `"lg"`.
- * @param props.highlightColor - Color used to highlight the selected tab. Options: `"primary"`, `"secondary"`, `"neutral"`. Default is `"primary"`.
- * @param props.children - Optional content rendered below the tab list.
- * @param props.className - Additional Tailwind CSS classes for the tab container.
- *
- * @returns A styled tab navigation bar with internal selection state and optional content area.
+ * @param props.item - Daftar tab `{ key, value, disabled? }`.
+ * @param props.variant - `"default"`, `"underline"`, `"bordered"`.
+ * @param props.radius - `"full"`, `"lg"` (default), `"md"`, `"sm"`.
+ * @param props.highlightColor - `"primary"` (default), `"secondary"`, `"neutral"`.
+ * @param props.value - Key tab aktif (controlled).
+ * @param props.defaultValue - Key tab aktif awal (uncontrolled).
+ * @param props.onValueChange - Dipanggil dengan key tab baru.
+ * @param props.children - Konten di bawah tab; boleh fungsi `(activeKey) => node`.
  */
 export default function TabWrapper({
   item,
@@ -45,86 +42,96 @@ export default function TabWrapper({
   radius = SIZE.LG,
   highlightColor = COLOR.PRIMARY,
   children,
+  value,
+  defaultValue,
+  onValueChange,
+  className,
   ...props
 }: TabTypes) {
-  const [selectedTab, setSelectedTab] = useState(item[0]);
+  const firstEnabled = item.find((tab) => !tab.disabled)?.key ?? item[0]?.key ?? "";
+  const [internal, setInternal] = useState(defaultValue ?? firstEnabled);
+  const active = value ?? internal;
 
-  const getRadius = {
+  const isUnderline = variant === VARIANT_TAB.UNDERLINE;
+  const color = (Object.values(COLOR) as string[]).includes(highlightColor)
+    ? (highlightColor as COLOR)
+    : COLOR.PRIMARY;
+
+  const radiusClass = {
     [SIZE.FULL]: "rounded-full",
     [SIZE.MD]: "rounded-md",
     [SIZE.LG]: "rounded-lg",
     [SIZE.SM]: "rounded-sm",
-  };
+  }[radius as SIZE] ?? "rounded-lg";
 
-  const getVariant = {
+  const containerVariant = {
     [VARIANT_TAB.UNDERLINE]: "bg-surface",
-    [VARIANT_TAB.DEFAULT]: "bg-neutral/50",
-    [VARIANT_TAB.BORDERED]: "bg-surface border-[1px]",
-  };
+    [VARIANT_TAB.DEFAULT]: "bg-neutral/10",
+    [VARIANT_TAB.BORDERED]: "bg-surface border border-border",
+  }[variant as VARIANT_TAB];
 
-  const getHighlightColor = {
-    [COLOR.PRIMARY]: "!bg-primary text-white font-semibold",
-    [COLOR.SECONDARY]: "!bg-secondary font-semibold",
-    [COLOR.NEUTRAL]: "!bg-neutral font-semibold",
-  };
+  // Pill (default & bordered): tab aktif terisi warna.
+  const activePill = {
+    [COLOR.PRIMARY]: "data-[active]:bg-primary data-[active]:text-primary-foreground",
+    [COLOR.SECONDARY]: "data-[active]:bg-secondary data-[active]:text-secondary-foreground",
+    [COLOR.NEUTRAL]: "data-[active]:bg-neutral data-[active]:text-white",
+  }[color];
 
-  const getHighlightColorUnderline = {
-    [COLOR.PRIMARY]: "!text-primary font-semibold",
-    [COLOR.SECONDARY]: "!text-secondary font-semibold",
-    [COLOR.NEUTRAL]: "!text-neutral font-semibold",
-  };
+  // Underline: tab aktif berwarna + garis bawah.
+  const activeUnderline = {
+    [COLOR.PRIMARY]: "data-[active]:border-primary data-[active]:text-primary",
+    [COLOR.SECONDARY]: "data-[active]:border-secondary data-[active]:text-secondary-700",
+    [COLOR.NEUTRAL]: "data-[active]:border-neutral data-[active]:text-neutral",
+  }[color];
 
-  const getHighlightColorBorderUnderline = {
-    [COLOR.PRIMARY]: "!border-primary font-semibold",
-    [COLOR.SECONDARY]: "!border-secondary font-semibold",
-    [COLOR.NEUTRAL]: "!border-neutral font-semibold",
-  };
-
-  const isEnumColor = Object.values(COLOR).includes(highlightColor as COLOR);
+  const hoverPill = {
+    [COLOR.PRIMARY]: "hover:bg-primary-100",
+    [COLOR.SECONDARY]: "hover:bg-secondary-100",
+    [COLOR.NEUTRAL]: "hover:bg-neutral-200",
+  }[color];
 
   return (
-    <>
-      <div
+    <Tabs.Root
+      value={active}
+      onValueChange={(next) => {
+        const key = String(next);
+        setInternal(key);
+        onValueChange?.(key);
+      }}
+    >
+      <Tabs.List
         {...props}
-        className={classNames(
+        className={cn(
           "flex",
-          variant !== VARIANT_TAB.UNDERLINE && getRadius[radius as SIZE],
-          getVariant[variant as VARIANT_TAB],
-          variant !== VARIANT_TAB.UNDERLINE ? "p-1" : ""
+          !isUnderline && radiusClass,
+          containerVariant,
+          !isUnderline && "p-1",
+          className,
         )}
       >
-        {item?.map((tab) => {
-          const isSelected = tab?.key === selectedTab?.key;
-
-          return (
-            <button
-              key={tab?.key}
-              className={classNames(
-                variant !== VARIANT_TAB.UNDERLINE && getRadius[radius as SIZE],
-                variant !== VARIANT_TAB.UNDERLINE && isEnumColor && isSelected
-                  ? getHighlightColor[highlightColor as COLOR]
-                  : `bg-[${highlightColor}]`,
-                variant === VARIANT_TAB.UNDERLINE && isSelected
-                  ? getHighlightColorUnderline[highlightColor as COLOR]
-                  : "",
-                variant === VARIANT_TAB.UNDERLINE && isSelected
-                  ? `border-b-[1px] ${
-                      getHighlightColorBorderUnderline[highlightColor as COLOR]
-                    }`
-                  : "",
-                variant === VARIANT_TAB.UNDERLINE && !isSelected
-                  ? "border-b-[1px] border-neutral"
-                  : "",
-                "px-3 py-2 flex flex-row w-full cursor-pointer text-center justify-center items-center hover:bg-primary transition-all duration-300 ease-in-out"
-              )}
-              onClick={() => setSelectedTab(tab)}
-            >
-              <Typography.Text> {tab?.value}</Typography.Text>
-            </button>
-          );
-        })}
-      </div>
-      {children}
-    </>
+        {item.map((tab) => (
+          <Tabs.Tab
+            key={tab.key}
+            value={tab.key}
+            disabled={tab.disabled}
+            className={cn(
+              "flex w-full cursor-pointer items-center justify-center px-3 py-2 text-center text-foreground-secondary transition-all duration-300 ease-in-out",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+              "data-[active]:font-semibold data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+              isUnderline
+                ? cn("border-b border-border-strong", activeUnderline)
+                : cn(radiusClass, hoverPill, activePill, "data-[active]:hover:brightness-95"),
+            )}
+          >
+            <Typography.Text className="tracking-normal">{tab.value}</Typography.Text>
+          </Tabs.Tab>
+        ))}
+      </Tabs.List>
+      {children != null ? (
+        <Tabs.Panel value={active} keepMounted={false} className="outline-none">
+          {typeof children === "function" ? children(active) : children}
+        </Tabs.Panel>
+      ) : null}
+    </Tabs.Root>
   );
 }

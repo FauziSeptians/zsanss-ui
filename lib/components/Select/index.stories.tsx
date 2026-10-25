@@ -136,3 +136,64 @@ export const NoResults: Story = {
     return <EmptyState />
   }
 }
+
+// --- Stories prop baru (Base UI) ---
+
+const FeatureTemplate = ({
+  disabled,
+  error,
+  clearable,
+  initial = null,
+}: {
+  disabled?: boolean
+  error?: boolean
+  clearable?: boolean
+  initial?: User | null
+}) => {
+  const [selected, setSelected] = useState<User | null>(initial)
+  const [query, setQuery] = useState('')
+  const filtered = mockUsers.filter((u) => u.name.toLowerCase().includes(query.toLowerCase()))
+
+  return (
+    <div className="w-80 h-72">
+      <label htmlFor="user-select" className="mb-1 block text-sm font-semibold text-foreground-secondary">
+        Penanggung jawab
+      </label>
+      <Select
+        value={selected}
+        onChange={setSelected}
+        setQuery={setQuery}
+        items={filtered}
+        disabled={disabled}
+        error={error}
+        isItemEqualToValue={(a, b) => a.id === b.id}
+      >
+        <Select.Input
+          id="user-select"
+          clearable={clearable}
+          displayValue={(u: User) => u?.name || ''}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Pilih nama..."
+        />
+        <Select.List emptyText="Tidak ada user yang cocok">
+          {filtered.map((user) => (
+            <Select.Option key={user.id} item={user} label={user.name} disabled={user.id === 4} />
+          ))}
+        </Select.List>
+      </Select>
+      {error ? <p className="mt-1 text-xs text-danger">Penanggung jawab wajib dipilih</p> : null}
+    </div>
+  )
+}
+
+export const Clearable: Story = {
+  render: () => <FeatureTemplate clearable initial={mockUsers[0]} />,
+}
+
+export const Disabled: Story = {
+  render: () => <FeatureTemplate disabled initial={mockUsers[1]} />,
+}
+
+export const WithError: Story = {
+  render: () => <FeatureTemplate error />,
+}

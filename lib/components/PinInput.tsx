@@ -1,7 +1,7 @@
 import classNames from "lib/utils/classNames";
 import { useEffect, useRef, useState } from "react";
 
-export const SizeMapper: Record<"sm" | "md" | "lg", string> = {
+const SizeMapper: Record<"sm" | "md" | "lg", string> = {
   sm: "h-3 w-3",
   md: "h-4 w-4",
   lg: "h-6 w-6",

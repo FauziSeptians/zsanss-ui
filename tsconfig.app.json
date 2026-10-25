@@ -20,6 +20,6 @@
       "@/*": ["./lib/*"]
     },
   },
-  "include": ["lib", "src"],
+  "include": ["lib", "src", "vitest.unit.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

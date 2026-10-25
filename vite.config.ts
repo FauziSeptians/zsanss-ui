@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [tailwindcss(), react(), tsconfigPaths(), dts({
     tsconfigPath: "./tsconfig.app.json",
     include: ["lib"],
-    exclude: ["lib/**/*.stories.tsx", "lib/**/*.stories.ts", "lib/foundations/**"],
+    exclude: ["lib/**/*.stories.tsx", "lib/**/*.stories.ts", "lib/**/*.test.ts", "lib/**/*.test.tsx", "lib/foundations/**"],
     insertTypesEntry: true
   })],
   resolve: {
@@ -52,6 +52,16 @@ export default defineConfig({
   },
   test: {
     projects: [{
+      extends: true,
+      test: {
+        name: 'unit',
+        environment: 'jsdom',
+        include: ['lib/**/*.test.{ts,tsx}'],
+        setupFiles: ['./vitest.unit.setup.ts'],
+        globals: true,
+        css: false
+      }
+    }, {
       extends: true,
       plugins: [
       // The plugin will run tests for the stories defined in your Storybook config
